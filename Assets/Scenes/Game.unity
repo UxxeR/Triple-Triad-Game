@@ -252,7 +252,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64cc2b9a36ef7c146937cc17d6b9cf6a, type: 2}
+  - {fileID: 2100000, guid: d5bbfc948f5a01b40980a0bf590ad9f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -273,8 +273,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.1227178, g: 0.13025479, b: 0.1792453, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3e19a829013abf549ab9a3a94e67dea3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -508,8 +508,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3e19a829013abf549ab9a3a94e67dea3, type: 3}
+  m_Color: {r: 0.14899999, g: 0.14899999, b: 0.14899999, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -702,12 +702,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 320, y: 180}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -856,8 +856,8 @@ Transform:
   m_LocalPosition: {x: -3.6023107, y: 2.158156, z: -6.1371307}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 171069002}
   - {fileID: 1839076825}
+  - {fileID: 171069002}
   - {fileID: 823629187}
   - {fileID: 681764659}
   - {fileID: 527443040}
@@ -1577,7 +1577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1743982239}
   m_Layer: 0
-  m_Name: CardsPositions
+  m_Name: CardSlots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1619,7 +1619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7073653996002682798, guid: 4c7aae083a48b334f971071edb601c64, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7073653996002682798, guid: 4c7aae083a48b334f971071edb601c64, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2043,7 +2043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7073653996002682798, guid: 4c7aae083a48b334f971071edb601c64, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7073653996002682798, guid: 4c7aae083a48b334f971071edb601c64, type: 3}
       propertyPath: m_LocalPosition.x

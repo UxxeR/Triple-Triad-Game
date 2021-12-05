@@ -15,6 +15,6 @@ MonoBehaviour:
   id: card
   cardName: Card
   cardDescription: Card description
-  power: 01000000020000000300000004000000
+  power: 02000000020000000200000002000000
   cardSprite: {fileID: 0}
-  elementType: 0
+  elementType: 10
