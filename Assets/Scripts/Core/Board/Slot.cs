@@ -24,8 +24,17 @@ public class Slot : MonoBehaviour, IDropHandler
         if (eventData.pointerDrag != null)
         {
             Card card = eventData.pointerDrag.GetComponent<Card>();
+
+            if (card.placed)
+            {
+                return;
+            }
+
+            card.UpdateRaycast(LayerMask.NameToLayer("Everything"));
+            card.placed = true;
             eventData.pointerDrag.transform.SetParent(transform);
             eventData.pointerDrag.transform.position = this.transform.position;
+            card.Attack();
         }
     }
 }
