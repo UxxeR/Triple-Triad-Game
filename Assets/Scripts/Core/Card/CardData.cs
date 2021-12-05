@@ -8,13 +8,22 @@ public class CardData : ScriptableObject
 {
     public string id;
     public string cardName;
-    public int[] power = new int[4];
+    public string cardDescription;
+    [Range(1, 10)] public int[] power = new int[4];
     public Sprite cardSprite;
     public ElementType elementType;
 }
 
-public enum ElementType {
-    NONE,
-    FIRE,
-    ICE
+public enum ElementType
+{
+    NONE = 0,
+    FIRE = 1,
+    ICE = 2,
+    WIND = 3,
+    EARTH = 4,
+    WATER = 5,
+    POISON = 6,
+    HOLY = 7,
+    LIGHTNING = 9,
+    DARKNESS = 10
 }
