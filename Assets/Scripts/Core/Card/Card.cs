@@ -18,18 +18,21 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     Vector3 startPosition;
     Vector3 offsetToMouse;
     float zDistanceToCamera;
-    public Action<LayerMask> OnRaycastUpdated;
 
     private void Awake()
     {
+        cardData = Instantiate(cardData);
+
         for (int i = 0; i < sides.Length; i++)
         {
             this.sides[i].powerText.text = this.cardData.power[i].ToString();
         }
 
         UpdateTeam(this.team);
+        cardSprite.sprite = cardData.cardSprite;
         elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{cardData.elementType.ToString()}");
-        cardData = Instantiate(cardData);
+        startPosition = transform.position;
+        GameController.instance.gameCards.Add(this);
     }
 
     public void UpdateRaycast(LayerMask layer)
@@ -75,7 +78,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     public void DecreasePower()
     {
-         this.cardData.power = cardData.power.Select(power => --power).ToArray();
+        this.cardData.power = cardData.power.Select(power => --power).ToArray();
 
         for (int i = 0; i < sides.Length; i++)
         {
@@ -93,7 +96,6 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
         dragging = true;
         UpdateRaycast(1 << LayerMask.NameToLayer("Slot"));
-        startPosition = transform.position;
         zDistanceToCamera = Mathf.Abs(startPosition.z - Camera.main.transform.position.z);
         offsetToMouse = startPosition - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zDistanceToCamera));
     }
@@ -115,11 +117,14 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             return;
         }
 
+        Slot targetSlot = eventData.pointerCurrentRaycast.gameObject?.GetComponent<Slot>();
+
         dragging = false;
 
-        if (eventData.pointerCurrentRaycast.gameObject?.GetComponent<Slot>() == null)
+        if (targetSlot == null || (targetSlot != null && targetSlot.occupied))
         {
 
+            this.transform.position = startPosition;
         }
 
         UpdateRaycast(LayerMask.NameToLayer("Everything"));
@@ -134,7 +139,7 @@ public enum Team
 
 public enum Power
 {
-    [CustomColor("#FFFDB4")] NORMAL = 0,
-    [CustomColor("#31FF00")] INCREASED = 1,
-    [CustomColor("#FF0500")] DECREASED = 2
+    [CustomColor("#FFFFFF")] NORMAL = 0,
+    [CustomColor("#52F113")] INCREASED = 1,
+    [CustomColor("#F1141B")] DECREASED = 2
 }
