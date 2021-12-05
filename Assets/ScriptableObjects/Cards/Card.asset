@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card
   m_EditorClassIdentifier: 
   id: card
-  cardName: card
+  cardName: Card
+  cardDescription: Card description
   power: 01000000020000000300000004000000
   cardSprite: {fileID: 0}
   elementType: 0
-  team: 0
