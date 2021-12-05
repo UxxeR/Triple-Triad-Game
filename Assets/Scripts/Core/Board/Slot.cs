@@ -8,6 +8,7 @@ public class Slot : MonoBehaviour, IDropHandler
     [Range(0f, 1f)] [SerializeField] private float elementalProbability = 0.3f;
     public SpriteRenderer elementSprite;
     public ElementType elementType;
+    public bool occupied = false;
 
     private void Awake()
     {
@@ -21,8 +22,9 @@ public class Slot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null)
+        if (eventData.pointerDrag != null && !occupied)
         {
+            occupied = true;
             Card card = eventData.pointerDrag.GetComponent<Card>();
 
             if (card.placed)
@@ -34,6 +36,19 @@ public class Slot : MonoBehaviour, IDropHandler
             card.placed = true;
             eventData.pointerDrag.transform.SetParent(transform);
             eventData.pointerDrag.transform.position = this.transform.position;
+
+            if (!elementType.Equals(ElementType.NONE))
+            {
+                if (elementType.Equals(card.cardData.elementType))
+                {
+                    card.IncreasePower();
+                }
+                else
+                {
+                    card.DecreasePower();
+                }
+            }
+
             card.Attack();
         }
     }

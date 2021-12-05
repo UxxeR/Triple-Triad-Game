@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    public CardData card;
+    public CardData cardData;
     public SpriteRenderer background;
     public SpriteRenderer cardSprite;
     public SpriteRenderer elementSprite;
@@ -23,11 +24,12 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     {
         for (int i = 0; i < sides.Length; i++)
         {
-            this.sides[i].powerText.text = this.card.power[i].ToString();
+            this.sides[i].powerText.text = this.cardData.power[i].ToString();
         }
 
         UpdateTeam(this.team);
-
+        elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{cardData.elementType.ToString()}");
+        cardData = Instantiate(cardData);
     }
 
     public void UpdateRaycast(LayerMask layer)
@@ -53,10 +55,32 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         {
             Card enemy = this.sides[i].GetTarget();
 
-            if (enemy != null && card.power[i] > enemy.card.power[Mathf.Abs((i + 2) % 2)] && enemy.placed)
+            if (enemy != null && cardData.power[i] > enemy.cardData.power[Mathf.Abs((i + 2) % 2)] && enemy.placed)
             {
                 enemy.UpdateTeam(team);
             }
+        }
+    }
+
+    public void IncreasePower()
+    {
+        this.cardData.power = this.cardData.power.Select(power => ++power).ToArray();
+
+        for (int i = 0; i < sides.Length; i++)
+        {
+            this.sides[i].powerText.text = this.cardData.power[i].ToString();
+            this.sides[i].powerText.color = GenericAttribute.GetAttribute<CustomColorAttribute>(Power.INCREASED).HexadecimalToRGBColor();
+        }
+    }
+
+    public void DecreasePower()
+    {
+         this.cardData.power = cardData.power.Select(power => --power).ToArray();
+
+        for (int i = 0; i < sides.Length; i++)
+        {
+            this.sides[i].powerText.text = this.cardData.power[i].ToString();
+            this.sides[i].powerText.color = GenericAttribute.GetAttribute<CustomColorAttribute>(Power.DECREASED).HexadecimalToRGBColor();
         }
     }
 
@@ -106,4 +130,11 @@ public enum Team
 {
     [CustomColor("#222A5E")] BLUE = 0,
     [CustomColor("#5E2228")] RED = 1
+}
+
+public enum Power
+{
+    [CustomColor("#FFFDB4")] NORMAL = 0,
+    [CustomColor("#31FF00")] INCREASED = 1,
+    [CustomColor("#FF0500")] DECREASED = 2
 }
