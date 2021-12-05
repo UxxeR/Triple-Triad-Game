@@ -9,11 +9,11 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     public CardData card;
     public SpriteRenderer background;
     public SpriteRenderer cardSprite;
-    public Collider2D cardCollider;
     public SpriteRenderer elementSprite;
     public Side[] sides = new Side[4];
     public Team team;
     public bool dragging = false;
+    public bool placed = false;
     Vector3 startPosition;
     Vector3 offsetToMouse;
     float zDistanceToCamera;
@@ -30,7 +30,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     }
 
-    private void UpdateRaycast(LayerMask layer)
+    public void UpdateRaycast(LayerMask layer)
     {
         CustomPhysicsBehaviour.instance.raycaster.eventMask = layer;
     }
@@ -47,10 +47,27 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         }
     }
 
+    public void Attack()
+    {
+        for (int i = 0; i < sides.Length; i++)
+        {
+            Card enemy = this.sides[i].GetTarget();
+
+            if (enemy != null && card.power[i] > enemy.card.power[Mathf.Abs((i + 2) % 2)] && enemy.placed)
+            {
+                enemy.UpdateTeam(team);
+            }
+        }
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (this.placed)
+        {
+            return;
+        }
+
         dragging = true;
-        this.cardCollider.enabled = false;
         UpdateRaycast(1 << LayerMask.NameToLayer("Slot"));
         startPosition = transform.position;
         zDistanceToCamera = Mathf.Abs(startPosition.z - Camera.main.transform.position.z);
@@ -59,19 +76,26 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (Input.touchCount > 1)
+        if (Input.touchCount > 1 || this.placed)
+        {
             return;
+        }
 
         transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zDistanceToCamera)) + offsetToMouse;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (this.placed)
+        {
+            return;
+        }
+
         dragging = false;
 
         if (eventData.pointerCurrentRaycast.gameObject?.GetComponent<Slot>() == null)
         {
-            this.cardCollider.enabled = true;
+
         }
 
         UpdateRaycast(LayerMask.NameToLayer("Everything"));
