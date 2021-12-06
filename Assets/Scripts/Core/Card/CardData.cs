@@ -24,6 +24,6 @@ public enum ElementType
     WATER = 5,
     POISON = 6,
     HOLY = 7,
-    LIGHTNING = 9,
-    DARKNESS = 10
+    LIGHTNING = 8,
+    DARKNESS = 9
 }

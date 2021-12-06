@@ -54,11 +54,19 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     public void Attack()
     {
+        int powerIndex;
+
         for (int i = 0; i < sides.Length; i++)
         {
             Card enemy = this.sides[i].GetTarget();
+            powerIndex = i + 2;
 
-            if (enemy != null && cardData.power[i] > enemy.cardData.power[Mathf.Abs((i + 2) % 2)] && enemy.placed)
+            if (powerIndex >= sides.Length)
+            {
+                powerIndex = powerIndex % 2;
+            }
+
+            if (enemy != null && cardData.power[i] > enemy.cardData.power[powerIndex] && enemy.placed)
             {
                 enemy.UpdateTeam(team);
             }

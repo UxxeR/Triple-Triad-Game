@@ -14,7 +14,7 @@ public class Slot : MonoBehaviour, IDropHandler
     {
         if (Random.Range(0f, 1f) < elementalProbability)
         {
-            elementType = (ElementType)Random.Range(1, System.Enum.GetNames(typeof(ElementType)).Length + 1);
+            elementType = (ElementType)Random.Range(1, System.Enum.GetNames(typeof(ElementType)).Length);
         }
 
         elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{elementType.ToString()}");
