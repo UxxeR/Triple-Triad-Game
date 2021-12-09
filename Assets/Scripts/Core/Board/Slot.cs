@@ -33,8 +33,8 @@ public class Slot : MonoBehaviour, IDropHandler
             }
 
             card.Placed = true;
-            eventData.pointerDrag.transform.SetParent(transform);
-            eventData.pointerDrag.transform.position = this.transform.position;
+            card.transform.SetParent(transform);
+            card.transform.position = this.transform.position;
 
             if (!(elementType == ElementType.NONE))
             {
@@ -52,5 +52,35 @@ public class Slot : MonoBehaviour, IDropHandler
             GameController.Instance.UpdateScore();
             TurnController.Instance.TurnEnded = true;
         }
+    }
+
+    public void PlaceCard(Card card)
+    {
+        Occupied = true;
+
+        if (card.Placed)
+        {
+            return;
+        }
+
+        card.Placed = true;
+        card.transform.SetParent(transform);
+        card.transform.position = this.transform.position;
+
+        if (!(elementType == ElementType.NONE))
+        {
+            if (elementType == card.CardData.ElementType)
+            {
+                card.IncreasePower();
+            }
+            else
+            {
+                card.DecreasePower();
+            }
+        }
+
+        card.Attack();
+        GameController.Instance.UpdateScore();
+        TurnController.Instance.TurnEnded = true;
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -20,6 +21,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         UpdateScore();
+        Board.Slots.Shuffle();
+        GameCards.Shuffle();
         TurnController.Instance.ChangeState(new StartMatchState());
     }
 
