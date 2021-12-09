@@ -75,7 +75,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     public void IncreasePower()
     {
-        this.CardData.Power = this.CardData.Power.Select(power => ++power).ToArray();
+        this.CardData.Power = this.CardData.Power.Select(power => power = Mathf.Clamp(power + 1, 1, 10)).ToArray();
 
         for (int i = 0; i < sides.Length; i++)
         {
@@ -86,7 +86,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     public void DecreasePower()
     {
-        this.CardData.Power = CardData.Power.Select(power => --power).ToArray();
+        this.CardData.Power = CardData.Power.Select(power => power = Mathf.Clamp(power - 1, 1, 10)).ToArray();
 
         for (int i = 0; i < sides.Length; i++)
         {
