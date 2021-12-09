@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class ScoreUI : MonoBehaviour
 {
-    public TMP_Text blueTeamScore;
-    public TMP_Text redTeamScore;
+    [SerializeField] private TMP_Text blueTeamScore;
+    [SerializeField] private TMP_Text redTeamScore;
+    
 
     private void Start()
     {
-        GameController.instance.OnSlotUpdated += UpdateScore;
+        GameController.Instance.OnSlotUpdated += UpdateScore;
     }
 
     public void UpdateScore(int blueScore, int redScore)

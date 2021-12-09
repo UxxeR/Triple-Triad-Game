@@ -6,26 +6,37 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public static GameController instance;
-    public List<Card> gameCards = new List<Card>();
-    public Action<int, int> OnSlotUpdated;
+    public static GameController Instance { get; private set; }
+    [field: SerializeField] public Board Board { get; set; }
+    [field: SerializeField] public List<Card> GameCards { get; set; } = new List<Card>();
+    public Action<int, int> OnSlotUpdated { get; set; }
+    public Action<LayerMask> OnRaycastUpdated { get; set; }
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     private void Start()
     {
         UpdateScore();
+        TurnController.Instance.ChangeState(new StartMatchState());
     }
 
     public void UpdateScore()
     {
         if (OnSlotUpdated != null)
         {
-            int blueScore = gameCards.Where(card => card.team == Team.BLUE).Count();
-            OnSlotUpdated(blueScore, gameCards.Count - blueScore);
+            int blueScore = GameCards.Where(card => card.Team == Team.BLUE).Count();
+            OnSlotUpdated(blueScore, GameCards.Count - blueScore);
+        }
+    }
+
+    public void UpdateRaycastPhysics(LayerMask layer)
+    {
+        if (OnRaycastUpdated != null)
+        {
+            OnRaycastUpdated(layer);
         }
     }
 }

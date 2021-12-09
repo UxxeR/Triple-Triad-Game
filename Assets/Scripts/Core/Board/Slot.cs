@@ -6,9 +6,9 @@ using UnityEngine.EventSystems;
 public class Slot : MonoBehaviour, IDropHandler
 {
     [Range(0f, 1f)] [SerializeField] private float elementalProbability = 0.3f;
-    public SpriteRenderer elementSprite;
-    public ElementType elementType;
-    public bool occupied = false;
+    [SerializeField] private SpriteRenderer elementSprite;
+    [SerializeField] private ElementType elementType;
+    [field: SerializeField] public bool Occupied { get; set; } = false;
 
     private void Awake()
     {
@@ -22,24 +22,23 @@ public class Slot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null && !occupied)
+        if (eventData.pointerDrag != null && !Occupied)
         {
-            occupied = true;
+            Occupied = true;
             Card card = eventData.pointerDrag.GetComponent<Card>();
 
-            if (card.placed)
+            if (card.Placed)
             {
                 return;
             }
 
-            card.UpdateRaycast(LayerMask.NameToLayer("Everything"));
-            card.placed = true;
+            card.Placed = true;
             eventData.pointerDrag.transform.SetParent(transform);
             eventData.pointerDrag.transform.position = this.transform.position;
 
             if (!(elementType == ElementType.NONE))
             {
-                if (elementType == card.cardData.elementType)
+                if (elementType == card.CardData.ElementType)
                 {
                     card.IncreasePower();
                 }
@@ -50,7 +49,8 @@ public class Slot : MonoBehaviour, IDropHandler
             }
 
             card.Attack();
-            GameController.instance.UpdateScore();
+            GameController.Instance.UpdateScore();
+            TurnController.Instance.TurnEnded = true;
         }
     }
 }
