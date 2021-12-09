@@ -7,6 +7,8 @@ public class EnemyTurnState : BaseState
 {
     private float timeToAction = 0f;
     private float MAX_THINKING_TIME;
+    private Slot slotSelected;
+    private Card cardSelected;
 
     public override void Enter()
     {
@@ -16,6 +18,7 @@ public class EnemyTurnState : BaseState
                                                                     turnController.TurnIndicator.transform.position.z);
         timeToAction = 0f;
         MAX_THINKING_TIME = Random.Range(0.7f, 1.2f);
+        BasicAI();
     }
 
     public override void Exit()
@@ -29,7 +32,7 @@ public class EnemyTurnState : BaseState
 
         if (timeToAction >= MAX_THINKING_TIME)
         {
-            //Do AI
+            slotSelected.PlaceCard(cardSelected);
 
             if (GameController.Instance.Board.Slots.Any(slot => !slot.Occupied))
             {
@@ -40,5 +43,11 @@ public class EnemyTurnState : BaseState
                 turnController.ChangeState(new EndMatchState());
             }
         }
+    }
+
+    public void BasicAI()
+    {
+        slotSelected = GameController.Instance.Board.Slots.Where(slot => !slot.Occupied).FirstOrDefault();
+        cardSelected = GameController.Instance.GameCards.Where(card => !card.Placed && card.Team == Team.RED).FirstOrDefault();
     }
 }
