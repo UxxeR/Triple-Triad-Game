@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class Side : MonoBehaviour
 {
-    public SpriteRenderer background;
-    public TMP_Text powerText;
     [SerializeField] private Vector3 raycastOffset;
     [SerializeField] private Vector3 raycastVector;
-    public SideName sideName;
+    [SerializeField] private SideName sideName;
+    [field: SerializeField] public SpriteRenderer Background { get; set; }
+    [field: SerializeField] public TMP_Text PowerText { get; set; }
 
     public Card GetTarget()
     {
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position + this.raycastOffset, this.raycastVector, 1f, 1 << LayerMask.NameToLayer("Card"));
+        LayerMask hitLaterMask = 1 << LayerMask.NameToLayer("PlayerCard") | 1 << LayerMask.NameToLayer("EnemyCard");
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position + this.raycastOffset, this.raycastVector, 1f, hitLaterMask);
         return hit.transform?.gameObject.GetComponent<Card>();
     }
 

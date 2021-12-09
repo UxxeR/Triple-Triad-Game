@@ -414,11 +414,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ce7b0dd17ab484aba9a1c0324e0264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 8759488051647027413}
-  powerText: {fileID: 2830322239599650029}
   raycastOffset: {x: 0, y: 0.5, z: 0}
   raycastVector: {x: 0, y: 1, z: 0}
   sideName: 0
+  <Background>k__BackingField: {fileID: 8759488051647027413}
+  <PowerText>k__BackingField: {fileID: 2830322239599650029}
 --- !u!1 &2039461587248798751
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,11 +662,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ce7b0dd17ab484aba9a1c0324e0264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 4958390477052991560}
-  powerText: {fileID: 5346321974793689311}
   raycastOffset: {x: 0, y: -0.5, z: 0}
   raycastVector: {x: 0, y: -1, z: 0}
   sideName: 2
+  <Background>k__BackingField: {fileID: 4958390477052991560}
+  <PowerText>k__BackingField: {fileID: 5346321974793689311}
 --- !u!1 &3455915723547617722
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +716,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10e84fde8f070a44a6e7b17859b412d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardData: {fileID: 11400000, guid: eb8a8ed297d7d8a4c944c57cba6280df, type: 2}
   background: {fileID: 7900185894242848405}
   cardSprite: {fileID: 2344414915003568256}
   elementSprite: {fileID: 3170819261493130641}
@@ -725,9 +724,10 @@ MonoBehaviour:
   - {fileID: 2171726251250935825}
   - {fileID: 599145693927394122}
   - {fileID: 5503585314037388838}
-  team: 0
   dragging: 0
-  placed: 0
+  <Team>k__BackingField: 0
+  <CardData>k__BackingField: {fileID: 11400000, guid: eb8a8ed297d7d8a4c944c57cba6280df, type: 2}
+  <Placed>k__BackingField: 0
 --- !u!61 &968554260391418864
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -969,11 +969,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ce7b0dd17ab484aba9a1c0324e0264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 4272800518400400327}
-  powerText: {fileID: 1591815400785596740}
   raycastOffset: {x: 0.5, y: 0, z: 0}
   raycastVector: {x: 1, y: 0, z: 0}
   sideName: 1
+  <Background>k__BackingField: {fileID: 4272800518400400327}
+  <PowerText>k__BackingField: {fileID: 1591815400785596740}
 --- !u!1 &4848617266773107981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,11 +1958,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ce7b0dd17ab484aba9a1c0324e0264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 1249395470962299160}
-  powerText: {fileID: 131072378863810382}
   raycastOffset: {x: -0.5, y: 0, z: 0}
   raycastVector: {x: -1, y: 0, z: 0}
   sideName: 3
+  <Background>k__BackingField: {fileID: 1249395470962299160}
+  <PowerText>k__BackingField: {fileID: 131072378863810382}
 --- !u!1 &8160673017869292571
 GameObject:
   m_ObjectHideFlags: 0

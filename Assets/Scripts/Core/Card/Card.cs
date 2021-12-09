@@ -7,89 +7,97 @@ using UnityEngine.EventSystems;
 
 public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    public CardData cardData;
-    public SpriteRenderer background;
-    public SpriteRenderer cardSprite;
-    public SpriteRenderer elementSprite;
-    public Side[] sides = new Side[4];
-    public Team team;
-    public bool dragging = false;
-    public bool placed = false;
-    Vector3 startPosition;
-    Vector3 offsetToMouse;
-    float zDistanceToCamera;
+    [SerializeField] private SpriteRenderer background;
+    [SerializeField] private SpriteRenderer cardSprite;
+    [SerializeField] private SpriteRenderer elementSprite;
+    [SerializeField] private Side[] sides = new Side[4];
+    [SerializeField] private bool dragging = false;
+    private Vector3 startPosition;
+    private Vector3 offsetToMouse;
+    private float zDistanceToCamera;
+    [field: SerializeField] public Team Team { get; set; }
+    [field: SerializeField] public CardData CardData { get; set; }
+    [field: SerializeField] public bool Placed { get; set; } = false;
 
     private void Awake()
     {
-        cardData = Instantiate(cardData);
+        CardData = Instantiate(CardData);
 
         for (int i = 0; i < sides.Length; i++)
         {
-            this.sides[i].powerText.text = this.cardData.power[i].ToString();
+            this.sides[i].PowerText.text = this.CardData.Power[i].ToString();
         }
 
-        UpdateTeam(this.team);
-        cardSprite.sprite = cardData.cardSprite;
-        elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{cardData.elementType.ToString()}");
+        UpdateTeam(this.Team);
+        cardSprite.sprite = CardData.CardSprite;
+        elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{CardData.ElementType.ToString()}");
         startPosition = transform.position;
-        GameController.instance.gameCards.Add(this);
+        GameController.Instance.GameCards.Add(this);
     }
 
     public void UpdateRaycast(LayerMask layer)
     {
-        CustomPhysicsBehaviour.instance.raycaster.eventMask = layer;
+        GameController.Instance.UpdateRaycastPhysics(layer);
     }
 
 
     public void UpdateTeam(Team team)
     {
-        this.team = team;
+        this.Team = team;
         this.background.color = GenericAttribute.GetAttribute<CustomColorAttribute>(team).HexadecimalToRGBColor();
 
         for (int i = 0; i < sides.Length; i++)
         {
-            this.sides[i].background.color = GenericAttribute.GetAttribute<CustomColorAttribute>(team).HexadecimalToRGBColor();
+            this.sides[i].Background.color = GenericAttribute.GetAttribute<CustomColorAttribute>(team).HexadecimalToRGBColor();
         }
     }
 
     public void Attack()
     {
+        int powerIndex;
+
         for (int i = 0; i < sides.Length; i++)
         {
             Card enemy = this.sides[i].GetTarget();
+            powerIndex = i + 2;
 
-            if (enemy != null && cardData.power[i] > enemy.cardData.power[Mathf.Abs((i + 2) % 2)] && enemy.placed)
+            if (powerIndex >= sides.Length)
             {
-                enemy.UpdateTeam(team);
+                powerIndex = powerIndex % 2;
+            }
+
+            if (enemy != null && CardData.Power[i] > enemy.CardData.Power[powerIndex] && enemy.Placed)
+            {
+                enemy.UpdateTeam(Team);
             }
         }
     }
 
     public void IncreasePower()
     {
-        this.cardData.power = this.cardData.power.Select(power => ++power).ToArray();
+        this.CardData.Power = this.CardData.Power.Select(power => ++power).ToArray();
 
         for (int i = 0; i < sides.Length; i++)
         {
-            this.sides[i].powerText.text = this.cardData.power[i].ToString();
-            this.sides[i].powerText.color = GenericAttribute.GetAttribute<CustomColorAttribute>(Power.INCREASED).HexadecimalToRGBColor();
+            this.sides[i].PowerText.text = this.CardData.Power[i].ToString();
+            this.sides[i].PowerText.color = GenericAttribute.GetAttribute<CustomColorAttribute>(Power.INCREASED).HexadecimalToRGBColor();
         }
     }
 
     public void DecreasePower()
     {
-        this.cardData.power = cardData.power.Select(power => --power).ToArray();
+        this.CardData.Power = CardData.Power.Select(power => --power).ToArray();
 
         for (int i = 0; i < sides.Length; i++)
         {
-            this.sides[i].powerText.text = this.cardData.power[i].ToString();
-            this.sides[i].powerText.color = GenericAttribute.GetAttribute<CustomColorAttribute>(Power.DECREASED).HexadecimalToRGBColor();
+            this.sides[i].PowerText.text = this.CardData.Power[i].ToString();
+            this.sides[i].PowerText.color = GenericAttribute.GetAttribute<CustomColorAttribute>(Power.DECREASED).HexadecimalToRGBColor();
         }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (this.placed)
+        if (this.Placed)
         {
             return;
         }
@@ -102,7 +110,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (Input.touchCount > 1 || this.placed)
+        if (Input.touchCount > 1 || this.Placed)
         {
             return;
         }
@@ -112,7 +120,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (this.placed)
+        if (this.Placed)
         {
             return;
         }
@@ -121,13 +129,11 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
         dragging = false;
 
-        if (targetSlot == null || (targetSlot != null && targetSlot.occupied))
+        if (targetSlot == null || (targetSlot != null && targetSlot.Occupied))
         {
-
             this.transform.position = startPosition;
+            UpdateRaycast(1 << LayerMask.NameToLayer("PlayerCard"));
         }
-
-        UpdateRaycast(LayerMask.NameToLayer("Everything"));
     }
 }
 

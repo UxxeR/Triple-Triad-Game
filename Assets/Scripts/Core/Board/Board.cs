@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    public Slot[] slots = new Slot[9];
+    [field: SerializeField] public Slot[] Slots { get; set; } = new Slot[9];
 }

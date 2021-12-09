@@ -6,11 +6,15 @@ using UnityEngine.EventSystems;
 
 public class CustomPhysicsBehaviour : MonoBehaviour
 {
-    public static CustomPhysicsBehaviour instance;
-    public Physics2DRaycaster raycaster;
+    [SerializeField] private Physics2DRaycaster raycaster;
 
     private void Awake()
     {
-        instance = this;
+        GameController.Instance.OnRaycastUpdated += UpdateRaycast;
+    }
+
+    private void UpdateRaycast(LayerMask layer)
+    {
+        raycaster.eventMask = layer;
     }
 }

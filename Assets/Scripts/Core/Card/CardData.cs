@@ -6,12 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Card", menuName = "Card/Create new card", order = 0)]
 public class CardData : ScriptableObject
 {
-    public string id;
-    public string cardName;
-    public string cardDescription;
-    [Range(1, 10)] public int[] power = new int[4];
-    public Sprite cardSprite;
-    public ElementType elementType;
+    [field: SerializeField] public string Id { get; set; }
+    [field: SerializeField] public string CardName { get; set; }
+    [field: SerializeField] public string CardDescription { get; set; }
+    [field: Range(1, 10)] [field: Min(1)] [field: SerializeField] public int[] Power { get; set; } = new int[4];
+    [field: SerializeField] public Sprite CardSprite { get; set; }
+    [field: SerializeField] public ElementType ElementType { get; set; }
 }
 
 public enum ElementType
@@ -24,6 +24,6 @@ public enum ElementType
     WATER = 5,
     POISON = 6,
     HOLY = 7,
-    LIGHTNING = 9,
-    DARKNESS = 10
+    LIGHTNING = 8,
+    DARKNESS = 9
 }
