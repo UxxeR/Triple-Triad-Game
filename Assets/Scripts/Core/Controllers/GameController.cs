@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
         UpdateScore();
         Board.Slots.Shuffle();
         GameCards.Shuffle();
+        GameCards.ForEach(card => card.CardData = CardDatabase.Instance.GetRandomElement());
         TurnController.Instance.ChangeState(new StartMatchState());
     }
 
