@@ -21,18 +21,17 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     private void Awake()
     {
+        startPosition = transform.position;
+        GameController.Instance.GameCards.Add(this);
+    }
+
+    private void Start()
+    {
         CardData = Instantiate(CardData);
-
-        for (int i = 0; i < sides.Length; i++)
-        {
-            this.sides[i].PowerText.text = this.CardData.Power[i].ToString();
-        }
-
+        UpdatePowerText(Power.NORMAL);
         UpdateTeam(this.Team);
         cardSprite.sprite = CardData.CardSprite;
         elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{CardData.ElementType.ToString()}");
-        startPosition = transform.position;
-        GameController.Instance.GameCards.Add(this);
     }
 
     public void UpdateRaycast(LayerMask layer)
@@ -76,22 +75,21 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     public void IncreasePower()
     {
         this.CardData.Power = this.CardData.Power.Select(power => power = Mathf.Clamp(power + 1, 1, 10)).ToArray();
-
-        for (int i = 0; i < sides.Length; i++)
-        {
-            this.sides[i].PowerText.text = this.CardData.Power[i].ToString();
-            this.sides[i].PowerText.color = GenericAttribute.GetAttribute<CustomColorAttribute>(Power.INCREASED).HexadecimalToRGBColor();
-        }
+        UpdatePowerText(Power.INCREASED);
     }
 
     public void DecreasePower()
     {
         this.CardData.Power = CardData.Power.Select(power => power = Mathf.Clamp(power - 1, 1, 10)).ToArray();
+        UpdatePowerText(Power.DECREASED);
+    }
 
+    private void UpdatePowerText(Power powerType)
+    {
         for (int i = 0; i < sides.Length; i++)
         {
             this.sides[i].PowerText.text = this.CardData.Power[i].ToString();
-            this.sides[i].PowerText.color = GenericAttribute.GetAttribute<CustomColorAttribute>(Power.DECREASED).HexadecimalToRGBColor();
+            this.sides[i].PowerText.color = GenericAttribute.GetAttribute<CustomColorAttribute>(powerType).HexadecimalToRGBColor();
         }
     }
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Card", menuName = "Card/Create new card", order = 0)]
-public class CardData : ScriptableObject
+public class CardData : ScriptableObject, ITableElement
 {
     [field: SerializeField] public string Id { get; set; }
     [field: SerializeField] public string CardName { get; set; }
