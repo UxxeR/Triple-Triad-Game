@@ -40,12 +40,12 @@ public class EndMatchState : BaseState
     {
         timeToShow += Time.deltaTime;
 
-        if (timeToShow > 0.7f)
+        if (timeToShow > 1.5f)
         {
             turnController.UpdateTurnVisibility(1f);
         }
 
-        if (timeToShow > 3f)
+        if (timeToShow > 4f)
         {
             SceneManager.LoadScene(0);
         }
