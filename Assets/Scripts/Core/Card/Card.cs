@@ -53,10 +53,14 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     public void Attack()
     {
-        int powerIndex;
+        int powerIndex = 0;
+        int sameRuleCounter = 0;
+        List<Card> capturedCards = new List<Card>();
+        List<Card> capturedSameRuleCards = new List<Card>();
 
         for (int i = 0; i < sides.Length; i++)
         {
+            //Getting opposite side of power of enemy
             Card enemy = this.sides[i].GetTarget();
             powerIndex = i + 2;
 
@@ -65,11 +69,29 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
                 powerIndex = powerIndex % 2;
             }
 
-            if (enemy != null && CardData.Power[i] > enemy.CardData.Power[powerIndex] && enemy.Placed)
+            if (enemy != null && enemy.Placed)
             {
-                enemy.UpdateTeam(Team);
+                //Normal capture
+                if (CardData.Power[i] > enemy.CardData.Power[powerIndex])
+                {
+                    capturedCards.Add(enemy);
+                }
+
+                //Same rule capture
+                if (CardData.Power[i] == enemy.CardData.Power[powerIndex])
+                {
+                    ++sameRuleCounter;
+                    capturedSameRuleCards.Add(enemy);
+                }
             }
         }
+
+        if (sameRuleCounter >= 2)
+        {
+            capturedCards = capturedCards.Union(capturedSameRuleCards).ToList();
+        }
+
+        capturedCards.ForEach(card => card.UpdateTeam(Team));
     }
 
     public void IncreasePower()

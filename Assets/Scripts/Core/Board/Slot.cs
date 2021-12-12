@@ -24,45 +24,19 @@ public class Slot : MonoBehaviour, IDropHandler
     {
         if (eventData.pointerDrag != null && !Occupied)
         {
-            Occupied = true;
             Card card = eventData.pointerDrag.GetComponent<Card>();
-
-            if (card.Placed)
-            {
-                return;
-            }
-
-            card.Placed = true;
-            card.transform.SetParent(transform);
-            card.transform.position = this.transform.position;
-
-            if (!(elementType == ElementType.NONE))
-            {
-                if (elementType == card.CardData.ElementType)
-                {
-                    card.IncreasePower();
-                }
-                else
-                {
-                    card.DecreasePower();
-                }
-            }
-
-            card.Attack();
-            GameController.Instance.UpdateScore();
-            TurnController.Instance.TurnEnded = true;
+            PlaceCard(card);
         }
     }
 
     public void PlaceCard(Card card)
     {
-        Occupied = true;
-
         if (card.Placed)
         {
             return;
         }
 
+        Occupied = true;
         card.Placed = true;
         card.transform.SetParent(transform);
         card.transform.position = this.transform.position;
