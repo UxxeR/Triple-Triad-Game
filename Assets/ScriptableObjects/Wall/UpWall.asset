@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8fbb6764667ff04ca8173becbdffb02, type: 3}
-  m_Name: Card
+  m_Name: UpWall
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: card
-  <CardName>k__BackingField: card
-  <CardDescription>k__BackingField: card
-  <Power>k__BackingField: 08000000040000000700000002000000
+  <Id>k__BackingField: 
+  <CardName>k__BackingField: 
+  <CardDescription>k__BackingField: 
+  <Power>k__BackingField: 00000000000000000a00000000000000
   <CardSprite>k__BackingField: {fileID: 0}
-  <ElementType>k__BackingField: 1
+  <ElementType>k__BackingField: 0

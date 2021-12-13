@@ -22,7 +22,6 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     private void Awake()
     {
         startPosition = transform.position;
-        GameController.Instance.GameCards.Add(this);
     }
 
     private void Start()
@@ -79,7 +78,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
                 //Same rule capture
                 sameRuleCards.Add(enemy, CardData.Power[i] == enemy.CardData.Power[powerIndex]);
-                
+
 
                 //Plus rule capture
                 plusRuleCards.Add(enemy, CardData.Power[i] + enemy.CardData.Power[powerIndex]);
@@ -99,7 +98,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         .ForEach(dictionary => capturedCards.Add(dictionary.Key));
 
         capturedCards.ForEach(card => card.UpdateTeam(Team));
-    }   
+    }
 
     public void IncreasePower()
     {
