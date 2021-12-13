@@ -418,6 +418,7 @@ MonoBehaviour:
   raycastVector: {x: 0, y: 1, z: 0}
   sideName: 0
   <Background>k__BackingField: {fileID: 8759488051647027413}
+  <Frame>k__BackingField: {fileID: 6564586950148866644}
   <PowerText>k__BackingField: {fileID: 2830322239599650029}
 --- !u!1 &2039461587248798751
 GameObject:
@@ -666,6 +667,7 @@ MonoBehaviour:
   raycastVector: {x: 0, y: -1, z: 0}
   sideName: 2
   <Background>k__BackingField: {fileID: 4958390477052991560}
+  <Frame>k__BackingField: {fileID: 5601909605287122798}
   <PowerText>k__BackingField: {fileID: 5346321974793689311}
 --- !u!1 &3455915723547617722
 GameObject:
@@ -719,6 +721,7 @@ MonoBehaviour:
   background: {fileID: 7900185894242848405}
   cardSprite: {fileID: 2344414915003568256}
   elementSprite: {fileID: 3170819261493130641}
+  frameSprite: {fileID: 5205703927026907967}
   sides:
   - {fileID: 8910098555750050188}
   - {fileID: 2171726251250935825}
@@ -976,6 +979,7 @@ MonoBehaviour:
   raycastVector: {x: 1, y: 0, z: 0}
   sideName: 1
   <Background>k__BackingField: {fileID: 4272800518400400327}
+  <Frame>k__BackingField: {fileID: 8931656394062619971}
   <PowerText>k__BackingField: {fileID: 1591815400785596740}
 --- !u!1 &4848617266773107981
 GameObject:
@@ -1965,6 +1969,7 @@ MonoBehaviour:
   raycastVector: {x: -1, y: 0, z: 0}
   sideName: 3
   <Background>k__BackingField: {fileID: 1249395470962299160}
+  <Frame>k__BackingField: {fileID: 5304345771791144375}
   <PowerText>k__BackingField: {fileID: 131072378863810382}
 --- !u!1 &8160673017869292571
 GameObject:

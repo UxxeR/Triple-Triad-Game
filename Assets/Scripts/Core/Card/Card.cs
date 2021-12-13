@@ -10,6 +10,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     [SerializeField] private SpriteRenderer background;
     [SerializeField] private SpriteRenderer cardSprite;
     [SerializeField] private SpriteRenderer elementSprite;
+    [SerializeField] private SpriteRenderer frameSprite;
     [SerializeField] private Side[] sides = new Side[4];
     [SerializeField] private bool dragging = false;
     public Vector3 startPosition;
@@ -51,6 +52,22 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         {
             this.sides[i].Background.color = GenericAttribute.GetAttribute<CustomColorAttribute>(team).HexadecimalToRGBColor();
         }
+    }
+
+    public void UpdateOrderInLayer(int layer)
+    {
+        background.sortingOrder += layer;
+        cardSprite.sortingOrder += layer;
+        elementSprite.sortingOrder += layer;
+        frameSprite.sortingOrder += layer;
+
+        foreach (Side side in sides)
+        {
+            side.Background.sortingOrder += layer;
+            side.Frame.sortingOrder += layer;
+            side.PowerText.GetComponent<MeshRenderer>().sortingOrder += layer;
+        }
+
     }
 
     public void Attack(bool isCombo)
@@ -148,6 +165,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         }
 
         dragging = true;
+        UpdateOrderInLayer(300);
         UpdateRaycast(1 << LayerMask.NameToLayer("Slot"));
         zDistanceToCamera = Mathf.Abs(startPosition.z - Camera.main.transform.position.z);
         offsetToMouse = startPosition - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zDistanceToCamera));
@@ -179,6 +197,8 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             this.transform.position = startPosition;
             UpdateRaycast(1 << LayerMask.NameToLayer("PlayerCard"));
         }
+
+        UpdateOrderInLayer(-300);
     }
 }
 
