@@ -14,6 +14,7 @@ public class Side : MonoBehaviour
     public Card GetTarget()
     {
         LayerMask hitLaterMask = 1 << LayerMask.NameToLayer("PlayerCard") | 1 << LayerMask.NameToLayer("EnemyCard");
+        hitLaterMask |= 1 << LayerMask.NameToLayer("Wall");
         RaycastHit2D hit = Physics2D.Raycast(this.transform.position + this.raycastOffset, this.raycastVector, 1f, hitLaterMask);
         return hit.transform?.gameObject.GetComponent<Card>();
     }
