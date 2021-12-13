@@ -54,9 +54,9 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     public void Attack()
     {
         int powerIndex = 0;
-        int sameRuleCounter = 0;
         List<Card> capturedCards = new List<Card>();
-        List<Card> capturedSameRuleCards = new List<Card>();
+        Dictionary<Card, bool> sameRuleCards = new Dictionary<Card, bool>();
+        Dictionary<Card, int> plusRuleCards = new Dictionary<Card, int>();
 
         for (int i = 0; i < sides.Length; i++)
         {
@@ -78,21 +78,28 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
                 }
 
                 //Same rule capture
-                if (CardData.Power[i] == enemy.CardData.Power[powerIndex])
-                {
-                    ++sameRuleCounter;
-                    capturedSameRuleCards.Add(enemy);
-                }
+                sameRuleCards.Add(enemy, CardData.Power[i] == enemy.CardData.Power[powerIndex]);
+                
+
+                //Plus rule capture
+                plusRuleCards.Add(enemy, CardData.Power[i] + enemy.CardData.Power[powerIndex]);
             }
         }
 
-        if (sameRuleCounter >= 2)
-        {
-            capturedCards = capturedCards.Union(capturedSameRuleCards).ToList();
-        }
+        sameRuleCards.GroupBy(dictionary => dictionary.Value)
+        .Where(group => group.Count() >= 2 && group.Key)
+        .SelectMany(group => group)
+        .ToList()
+        .ForEach(dictionary => capturedCards.Add(dictionary.Key));
+
+        plusRuleCards.GroupBy(dictionary => dictionary.Value)
+        .Where(group => group.Count() >= 2)
+        .SelectMany(group => group)
+        .ToList()
+        .ForEach(dictionary => capturedCards.Add(dictionary.Key));
 
         capturedCards.ForEach(card => card.UpdateTeam(Team));
-    }
+    }   
 
     public void IncreasePower()
     {
