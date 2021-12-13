@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get; private set; }
     [field: SerializeField] public Board Board { get; set; }
     [field: SerializeField] public List<Card> GameCards { get; set; } = new List<Card>();
+    [field: SerializeField] public List<DeckCardPosition> CardPositions { get; set; } = new List<DeckCardPosition>();
     public Action<int, int> OnSlotUpdated { get; set; }
     public Action<LayerMask> OnRaycastUpdated { get; set; }
 
