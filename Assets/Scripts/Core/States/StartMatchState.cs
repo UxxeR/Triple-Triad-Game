@@ -12,6 +12,7 @@ public class StartMatchState : BaseState
         GameController.Instance.UpdateRaycastPhysics(1 << LayerMask.NameToLayer("Nothing"));
         timeToDecideTurn = 0f;
         turnDecided = false;
+        turnController.UpdateTurnWindow(new CustomColorAttribute("#131313").HexadecimalToRGBColor(), $"ROLLING THE DICE...");
         turnController.UpdateTurnVisibility(1f);
     }
 
