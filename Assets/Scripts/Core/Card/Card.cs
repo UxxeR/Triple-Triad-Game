@@ -12,11 +12,13 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     [SerializeField] private SpriteRenderer elementSprite;
     [SerializeField] private Side[] sides = new Side[4];
     [SerializeField] private bool dragging = false;
-    private Vector3 startPosition;
+    public Vector3 startPosition;
     private Vector3 offsetToMouse;
     private float zDistanceToCamera;
     [field: SerializeField] public Team Team { get; set; }
+    [field: SerializeField] public Power Power { get; set; } = Power.NORMAL;
     [field: SerializeField] public CardData CardData { get; set; }
+    [field: SerializeField] public int[] OriginalPower { get; set; }
     [field: SerializeField] public bool Placed { get; set; } = false;
 
     private void Awake()
@@ -27,6 +29,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     private void Start()
     {
         CardData = Instantiate(CardData);
+        OriginalPower = CardData.Power;
         UpdatePowerText(Power.NORMAL);
         UpdateTeam(this.Team);
         cardSprite.sprite = CardData.CardSprite;
@@ -54,8 +57,8 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     {
         int powerIndex = 0;
         List<Card> capturedCards = new List<Card>();
-        Dictionary<Card, bool> sameRuleCards = new Dictionary<Card, bool>();
-        Dictionary<Card, int> plusRuleCards = new Dictionary<Card, int>();
+        List<KeyValuePair<Card, bool>> sameRuleCards = new List<KeyValuePair<Card, bool>>();
+        List<KeyValuePair<Card, int>> plusRuleCards = new List<KeyValuePair<Card, int>>();
 
         for (int i = 0; i < sides.Length; i++)
         {
@@ -77,25 +80,28 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
                 }
 
                 //Same rule capture
-                sameRuleCards.Add(enemy, CardData.Power[i] == enemy.CardData.Power[powerIndex]);
+                sameRuleCards.Add(new KeyValuePair<Card, bool>(enemy, CardData.Power[i] == enemy.CardData.Power[powerIndex]));
 
 
                 //Plus rule capture
-                plusRuleCards.Add(enemy, CardData.Power[i] + enemy.CardData.Power[powerIndex]);
+                if (enemy.gameObject.layer != LayerMask.NameToLayer("Wall"))
+                {
+                    plusRuleCards.Add(new KeyValuePair<Card, int>(enemy, CardData.Power[i] + enemy.CardData.Power[powerIndex]));
+                }
             }
         }
 
-        sameRuleCards.GroupBy(dictionary => dictionary.Value)
+        sameRuleCards.GroupBy(pair => pair.Value)
         .Where(group => group.Count() >= 2 && group.Key)
         .SelectMany(group => group)
         .ToList()
-        .ForEach(dictionary => capturedCards.Add(dictionary.Key));
+        .ForEach(pair => capturedCards.Add(pair.Key));
 
-        plusRuleCards.GroupBy(dictionary => dictionary.Value)
+        plusRuleCards.GroupBy(pair => pair.Value)
         .Where(group => group.Count() >= 2)
         .SelectMany(group => group)
         .ToList()
-        .ForEach(dictionary => capturedCards.Add(dictionary.Key));
+        .ForEach(pair => capturedCards.Add(pair.Key));
 
         capturedCards.ForEach(card => card.UpdateTeam(Team));
     }
@@ -112,13 +118,15 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         UpdatePowerText(Power.DECREASED);
     }
 
-    private void UpdatePowerText(Power powerType)
+    public void UpdatePowerText(Power powerType)
     {
         for (int i = 0; i < sides.Length; i++)
         {
             this.sides[i].PowerText.text = this.CardData.Power[i].ToString();
             this.sides[i].PowerText.color = GenericAttribute.GetAttribute<CustomColorAttribute>(powerType).HexadecimalToRGBColor();
         }
+
+        Power = powerType;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
