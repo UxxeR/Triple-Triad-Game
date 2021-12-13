@@ -53,7 +53,7 @@ public class Slot : MonoBehaviour, IDropHandler
             }
         }
 
-        card.Attack();
+        card.Attack(false);
         GameController.Instance.UpdateScore();
         TurnController.Instance.TurnEnded = true;
     }
