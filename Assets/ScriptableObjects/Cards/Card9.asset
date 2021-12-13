@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fbb6764667ff04ca8173becbdffb02, type: 3}
   m_Name: Card9
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: card
+  <Id>k__BackingField: card9
   <CardName>k__BackingField: card
   <CardDescription>k__BackingField: card
   <Power>k__BackingField: 030000000a0000000500000002000000
