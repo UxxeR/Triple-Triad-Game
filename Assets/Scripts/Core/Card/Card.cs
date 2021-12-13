@@ -53,7 +53,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         }
     }
 
-    public void Attack()
+    public void Attack(bool isCombo)
     {
         int powerIndex = 0;
         List<Card> capturedCards = new List<Card>();
@@ -91,19 +91,30 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             }
         }
 
-        sameRuleCards.GroupBy(pair => pair.Value)
-        .Where(group => group.Count() >= 2 && group.Key)
-        .SelectMany(group => group)
-        .ToList()
-        .ForEach(pair => capturedCards.Add(pair.Key));
-
-        plusRuleCards.GroupBy(pair => pair.Value)
-        .Where(group => group.Count() >= 2)
-        .SelectMany(group => group)
-        .ToList()
-        .ForEach(pair => capturedCards.Add(pair.Key));
-
         capturedCards.ForEach(card => card.UpdateTeam(Team));
+
+        if (!isCombo)
+        {
+            sameRuleCards.GroupBy(pair => pair.Value)
+            .Where(group => group.Count() >= 2 && group.Key)
+            .SelectMany(group => group)
+            .ToList()
+            .ForEach(pair =>
+            {
+                pair.Key.UpdateTeam(Team);
+                pair.Key.Attack(true);
+            });
+
+            plusRuleCards.GroupBy(pair => pair.Value)
+            .Where(group => group.Count() >= 2)
+            .SelectMany(group => group)
+            .ToList()
+            .ForEach(pair =>
+            {
+                pair.Key.UpdateTeam(Team);
+                pair.Key.Attack(true);
+            });
+        }
     }
 
     public void IncreasePower()
