@@ -183,6 +183,8 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        UpdateOrderInLayer(-300);
+        
         if (this.Placed)
         {
             return;
@@ -197,8 +199,6 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             this.transform.position = startPosition;
             UpdateRaycast(1 << LayerMask.NameToLayer("PlayerCard"));
         }
-
-        UpdateOrderInLayer(-300);
     }
 }
 
