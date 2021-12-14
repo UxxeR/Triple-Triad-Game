@@ -4,6 +4,11 @@ using System.Security.Cryptography;
 
 public static class ListExtension
 {
+    /// <summary>
+    /// Shuffle the elements randomly.
+    /// </summary>
+    /// <param name="list">The list that will be shuffle.</param>
+    /// <typeparam name="T">The type of the list.</typeparam>
     public static void Shuffle<T>(this IList<T> list)
     {
         RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();

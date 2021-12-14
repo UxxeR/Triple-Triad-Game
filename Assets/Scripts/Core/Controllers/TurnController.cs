@@ -13,6 +13,10 @@ public class TurnController : MonoBehaviour
     public Action<float> OnVisibilityUpdated { get; set; }
     public Action<Color, string> OnTurnUpdated { get; set; }
 
+    /// <summary>
+    /// Update the visibility of the turn UI.
+    /// </summary>
+    /// <param name="alpha">The new alpha of the window, [0f,1f]</param>
     public void UpdateTurnVisibility(float alpha)
     {
         if (OnVisibilityUpdated != null)
@@ -21,6 +25,11 @@ public class TurnController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update the color and text of the turn UI.
+    /// </summary>
+    /// <param name="backgroundColor">New color.</param>
+    /// <param name="text">New text.</param>
     public void UpdateTurnWindow(Color backgroundColor, string text)
     {
         if (OnTurnUpdated != null)
@@ -29,11 +38,18 @@ public class TurnController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// First method that will be called when a script is enabled. Only called once.
+    /// </summary>
     private void Awake()
     {
         Instance = this;
     }
 
+    /// <summary>
+    /// Change the current state of the game.
+    /// </summary>
+    /// <param name="nextState">Next state.</param>
     public void ChangeState(BaseState nextState)
     {
         currentState?.Exit();
@@ -41,6 +57,9 @@ public class TurnController : MonoBehaviour
         currentState?.Enter();
     }
 
+    /// <summary>
+    /// Called every frame.
+    /// </summary>
     private void Update()
     {
         if (currentState != null)

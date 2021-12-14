@@ -10,6 +10,9 @@ public class Slot : MonoBehaviour, IDropHandler
     [SerializeField] private ElementType elementType;
     [field: SerializeField] public bool Occupied { get; set; } = false;
 
+    /// <summary>
+    /// First method that will be called when a script is enabled. Only called once.
+    /// </summary>
     private void Awake()
     {
         if (Random.Range(0f, 1f) < elementalProbability)
@@ -20,6 +23,10 @@ public class Slot : MonoBehaviour, IDropHandler
         elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{elementType.ToString()}");
     }
 
+    /// <summary>
+    /// Called before a drag is ended if the object is above.
+    /// </summary>
+    /// <param name="eventData">The object that is dropped.</param>
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null && !Occupied)
@@ -29,6 +36,11 @@ public class Slot : MonoBehaviour, IDropHandler
         }
     }
 
+    /// <summary>
+    /// Place a card in a slot and decrease or decrease his power depending if the element of the slot is the same as the card element.
+    /// The card will attack the adjacent cards and update the score after that.
+    /// </summary>
+    /// <param name="card">The card that will me placed in the slot.</param>
     public void PlaceCard(Card card)
     {
         if (card.Placed)
@@ -53,7 +65,7 @@ public class Slot : MonoBehaviour, IDropHandler
             }
         }
 
-        card.Attack(false);
+        card.Attack();
         GameController.Instance.UpdateScore();
         TurnController.Instance.TurnEnded = true;
     }

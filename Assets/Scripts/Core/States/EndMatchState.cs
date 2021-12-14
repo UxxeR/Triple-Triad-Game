@@ -10,6 +10,9 @@ public class EndMatchState : BaseState
     private float timeToShow = 0f;
     private bool draw = false;
 
+    /// <summary>
+    /// Called when a state start.
+    /// </summary>
     public override void Enter()
     {
         gameController = GameController.Instance;
@@ -35,6 +38,9 @@ public class EndMatchState : BaseState
         }
     }
 
+    /// <summary>
+    /// Called when a state finish.
+    /// </summary>
     public override void Exit()
     {
         gameController.GameCards.Where(card => card.Placed).ToList().ForEach(card =>
@@ -54,6 +60,9 @@ public class EndMatchState : BaseState
         gameController.Board.Slots.ForEach(slot => slot.Occupied = false);
     }
 
+    /// <summary>
+    /// Called by the state every frame.
+    /// </summary>
     public override void UpdateLogic()
     {
         timeToShow += Time.deltaTime;
@@ -76,6 +85,9 @@ public class EndMatchState : BaseState
         }
     }
 
+    /// <summary>
+    /// Load the game scene.
+    /// </summary>
     public void StartNewGame()
     {
         SceneManager.LoadScene(0);

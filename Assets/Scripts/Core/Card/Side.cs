@@ -12,6 +12,10 @@ public class Side : MonoBehaviour
     [field: SerializeField] public SpriteRenderer Frame { get; set; }
     [field: SerializeField] public TMP_Text PowerText { get; set; }
 
+    /// <summary>
+    /// Throws a raycast and gets the card component.
+    /// </summary>
+    /// <returns>Card component if any or null if none.</returns>
     public Card GetTarget()
     {
         LayerMask hitLaterMask = 1 << LayerMask.NameToLayer("PlayerCard") | 1 << LayerMask.NameToLayer("EnemyCard");
@@ -20,6 +24,9 @@ public class Side : MonoBehaviour
         return hit.transform?.gameObject.GetComponent<Card>();
     }
 
+    /// <summary>
+    /// Used to see in the editor the raycast rays.
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

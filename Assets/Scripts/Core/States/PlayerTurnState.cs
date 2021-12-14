@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerTurnState : BaseState
 {
+    /// <summary>
+    /// Called when a state start.
+    /// </summary>
     public override void Enter()
     {
         turnController.TurnEnded = false;
@@ -15,11 +18,17 @@ public class PlayerTurnState : BaseState
         GameController.Instance.UpdateRaycastPhysics(1 << LayerMask.NameToLayer("PlayerCard"));
     }
 
+    /// <summary>
+    /// Called when a state finish.
+    /// </summary>
     public override void Exit()
     {
         GameController.Instance.UpdateRaycastPhysics(1 << LayerMask.NameToLayer("Nothing"));
     }
 
+    /// <summary>
+    /// Called by the state every frame.
+    /// </summary>
     public override void UpdateLogic()
     {
         if (turnController.TurnEnded)

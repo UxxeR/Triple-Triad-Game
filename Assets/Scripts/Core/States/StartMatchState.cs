@@ -7,6 +7,9 @@ public class StartMatchState : BaseState
     private float timeToDecideTurn = 0f;
     private bool turnDecided = false;
 
+    /// <summary>
+    /// Called when a state start.
+    /// </summary>
     public override void Enter()
     {
         GameController.Instance.UpdateRaycastPhysics(1 << LayerMask.NameToLayer("Nothing"));
@@ -16,11 +19,17 @@ public class StartMatchState : BaseState
         turnController.UpdateTurnVisibility(1f);
     }
 
+    /// <summary>
+    /// Called when a state finish.
+    /// </summary>
     public override void Exit()
     {
         turnController.UpdateTurnVisibility(0f);
     }
 
+    /// <summary>
+    /// Called by the state every frame.
+    /// </summary>
     public override void UpdateLogic()
     {
         timeToDecideTurn += Time.deltaTime;
@@ -45,6 +54,9 @@ public class StartMatchState : BaseState
         }
     }
 
+    /// <summary>
+    /// Decide a turn randomly.
+    /// </summary>
     public void DecideTeamTurn()
     {
         turnController.TeamTurn = (Team)Random.Range(0, System.Enum.GetNames(typeof(Team)).Length);

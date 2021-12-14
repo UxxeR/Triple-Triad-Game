@@ -22,11 +22,17 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     [field: SerializeField] public int[] OriginalPower { get; set; }
     [field: SerializeField] public bool Placed { get; set; } = false;
 
+    /// <summary>
+    /// First method that will be called when a script is enabled. Only called once.
+    /// </summary>
     private void Awake()
     {
         startPosition = transform.position;
     }
 
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time. Only called once.
+    /// </summary>
     private void Start()
     {
         CardData = Instantiate(CardData);
@@ -37,12 +43,19 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{CardData.ElementType.ToString()}");
     }
 
+    /// <summary>
+    /// Update the layers that can be interacted.
+    /// </summary>
+    /// <param name="layer">The layers should be writed using bitwise.</param>
     public void UpdateRaycast(LayerMask layer)
     {
         GameController.Instance.UpdateRaycastPhysics(layer);
     }
 
-
+    /// <summary>
+    /// Update the team of a selected card.
+    /// </summary>
+    /// <param name="team">Card's new team.</param>
     public void UpdateTeam(Team team)
     {
         this.Team = team;
@@ -54,6 +67,10 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         }
     }
 
+    /// <summary>
+    /// Update the order in layer of the sprite renderer components of a card so it will be in front or behind other elements in the scene.
+    /// </summary>
+    /// <param name="layer">New layer number that will be summed.</param>
     public void UpdateOrderInLayer(int layer)
     {
         background.sortingOrder += layer;
@@ -70,10 +87,13 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     }
 
-    public void Attack(bool isCombo)
+    /// <summary>
+    /// Card will attack the adjacent cards and conquer them if their power side is lesser than yours, apply plus, same, same wall and combo rules.
+    /// </summary>
+    /// <param name="isCombo">Especify if the attack is from the main card (combo = false) or if the attack is from an adjacent card (combo = true).</param>
+    public void Attack(bool isCombo = false)
     {
         int powerIndex = 0;
-        List<Card> capturedCards = new List<Card>();
         List<KeyValuePair<Card, bool>> sameRuleCards = new List<KeyValuePair<Card, bool>>();
         List<KeyValuePair<Card, int>> plusRuleCards = new List<KeyValuePair<Card, int>>();
 
@@ -93,7 +113,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
                 //Normal capture
                 if (CardData.Power[i] > enemy.CardData.Power[powerIndex])
                 {
-                    capturedCards.Add(enemy);
+                    enemy.UpdateTeam(Team);
                 }
 
                 //Same rule capture
@@ -108,10 +128,9 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             }
         }
 
-        capturedCards.ForEach(card => card.UpdateTeam(Team));
-
         if (!isCombo)
         {
+            //Gets the cards that are affected by same rule
             sameRuleCards.GroupBy(pair => pair.Value)
             .Where(group => group.Count() >= 2 && group.Key)
             .SelectMany(group => group)
@@ -122,6 +141,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
                 pair.Key.Attack(true);
             });
 
+            //Gets the cards that are affected by plus rule
             plusRuleCards.GroupBy(pair => pair.Value)
             .Where(group => group.Count() >= 2)
             .SelectMany(group => group)
@@ -134,18 +154,28 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         }
     }
 
+    /// <summary>
+    /// Increase the power of the card in all sides in 1.
+    /// </summary>
     public void IncreasePower()
     {
         this.CardData.Power = this.CardData.Power.Select(power => power = Mathf.Clamp(power + 1, 1, 10)).ToArray();
         UpdatePowerText(Power.INCREASED);
     }
 
+    /// <summary>
+    /// Decrease the power of the card in all sides in 1.
+    /// </summary>
     public void DecreasePower()
     {
         this.CardData.Power = CardData.Power.Select(power => power = Mathf.Clamp(power - 1, 1, 10)).ToArray();
         UpdatePowerText(Power.DECREASED);
     }
 
+    /// <summary>
+    /// Update the text and the color of the text of the sides of the card.
+    /// </summary>
+    /// <param name="powerType">Determines the color of the text (green if is increased or red if is decreased).</param>
     public void UpdatePowerText(Power powerType)
     {
         for (int i = 0; i < sides.Length; i++)
@@ -157,6 +187,10 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         Power = powerType;
     }
 
+    /// <summary>
+    /// Called before a drag is started.
+    /// </summary>
+    /// <param name="eventData">The object that is dragged.</param>
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (this.Placed)
@@ -171,6 +205,10 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         offsetToMouse = startPosition - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zDistanceToCamera));
     }
 
+    /// <summary>
+    /// Called while is dragged.
+    /// </summary>
+    /// <param name="eventData">The object that is dragged.</param>
     public void OnDrag(PointerEventData eventData)
     {
         if (Input.touchCount > 1 || this.Placed)
@@ -181,10 +219,14 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zDistanceToCamera)) + offsetToMouse;
     }
 
+    /// <summary>
+    /// Called after a drag has ended.
+    /// </summary>
+    /// <param name="eventData">The object that is dragged.</param>
     public void OnEndDrag(PointerEventData eventData)
     {
         UpdateOrderInLayer(-300);
-        
+
         if (this.Placed)
         {
             return;

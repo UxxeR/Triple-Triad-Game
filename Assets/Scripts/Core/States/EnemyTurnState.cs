@@ -10,6 +10,9 @@ public class EnemyTurnState : BaseState
     private Slot slotSelected;
     private Card cardSelected;
 
+    /// <summary>
+    /// Called when a state start.
+    /// </summary>
     public override void Enter()
     {
         turnController.TeamTurn = Team.RED;
@@ -21,11 +24,17 @@ public class EnemyTurnState : BaseState
         BasicAI();
     }
 
+    /// <summary>
+    /// Called when a state finish.
+    /// </summary>
     public override void Exit()
     {
         //Nothing
     }
 
+    /// <summary>
+    /// Called by the state every frame.
+    /// </summary>
     public override void UpdateLogic()
     {
         timeToAction += Time.deltaTime;
@@ -45,6 +54,10 @@ public class EnemyTurnState : BaseState
         }
     }
 
+    /// <summary>
+    /// Basic artificial intelligence for the enemy.
+    /// Will drop a random card in a random slot.
+    /// </summary>
     public void BasicAI()
     {
         slotSelected = GameController.Instance.Board.Slots.Where(slot => !slot.Occupied).FirstOrDefault();
