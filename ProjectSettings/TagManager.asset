@@ -11,10 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Slot
+  - PlayerCard
+  - EnemyCard
+  - Wall
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Over
+    uniqueID: 2288903395
+    locked: 0
+  - name: Under
+    uniqueID: 3052529281
     locked: 0
