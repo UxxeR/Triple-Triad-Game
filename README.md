@@ -51,5 +51,6 @@ Every piece of art in this project was self-made using Aseprite.
 - [ ] Enemy advanced AI.
 - [ ] Deck building.
 - [ ] Unlocking cards.
+- [ ] Turn timer.
 - [ ] Settings (including rule settings).
 - [ ] Game feel.
