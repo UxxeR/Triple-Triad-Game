@@ -48,6 +48,7 @@ public class Slot : MonoBehaviour, IDropHandler
 
         Occupied = true;
         card.Placed = true;
+        card.UpdateOrderInLayer(-300);
         card.transform.SetParent(transform);
         card.transform.position = this.transform.position;
 
