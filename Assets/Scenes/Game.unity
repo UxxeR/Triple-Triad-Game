@@ -427,8 +427,8 @@ MonoBehaviour:
   background: {fileID: 79418287}
   cardSprite: {fileID: 79418287}
   elementSprite: {fileID: 79418287}
+  frameSprite: {fileID: 0}
   sides: []
-  dragging: 0
   startPosition: {x: 0, y: 0, z: 0}
   <Team>k__BackingField: 0
   <Power>k__BackingField: 0
@@ -589,7 +589,7 @@ Transform:
   m_GameObject: {fileID: 193231915}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 2}
-  m_LocalScale: {x: 21, y: 13, z: 3}
+  m_LocalScale: {x: 26.76, y: 13, z: 3}
   m_Children: []
   m_Father: {fileID: 1019989367}
   m_RootOrder: 0
@@ -1900,8 +1900,8 @@ MonoBehaviour:
   background: {fileID: 824325429}
   cardSprite: {fileID: 824325429}
   elementSprite: {fileID: 824325429}
+  frameSprite: {fileID: 0}
   sides: []
-  dragging: 0
   startPosition: {x: 0, y: 0, z: 0}
   <Team>k__BackingField: 0
   <Power>k__BackingField: 0
@@ -2418,8 +2418,8 @@ MonoBehaviour:
   background: {fileID: 973364633}
   cardSprite: {fileID: 973364633}
   elementSprite: {fileID: 973364633}
+  frameSprite: {fileID: 0}
   sides: []
-  dragging: 0
   startPosition: {x: 0, y: 0, z: 0}
   <Team>k__BackingField: 0
   <Power>k__BackingField: 0
@@ -4483,8 +4483,8 @@ MonoBehaviour:
   background: {fileID: 2117013541}
   cardSprite: {fileID: 2117013541}
   elementSprite: {fileID: 2117013541}
+  frameSprite: {fileID: 0}
   sides: []
-  dragging: 0
   startPosition: {x: 0, y: 0, z: 0}
   <Team>k__BackingField: 0
   <Power>k__BackingField: 0

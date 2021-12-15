@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -50,6 +48,7 @@ public class Slot : MonoBehaviour, IDropHandler
 
         Occupied = true;
         card.Placed = true;
+        card.UpdateOrderInLayer(-300);
         card.transform.SetParent(transform);
         card.transform.position = this.transform.position;
 

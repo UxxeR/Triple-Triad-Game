@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -41,6 +39,7 @@ public class EnemyTurnState : BaseState
 
         if (timeToAction >= MAX_THINKING_TIME)
         {
+            cardSelected.UpdateOrderInLayer(300);
             slotSelected.PlaceCard(cardSelected);
 
             if (GameController.Instance.Board.Slots.Any(slot => !slot.Occupied))

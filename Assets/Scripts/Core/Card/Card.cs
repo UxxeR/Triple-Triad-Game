@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,7 +10,6 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     [SerializeField] private SpriteRenderer elementSprite;
     [SerializeField] private SpriteRenderer frameSprite;
     [SerializeField] private Side[] sides = new Side[4];
-    [SerializeField] private bool dragging = false;
     public Vector3 startPosition;
     private Vector3 offsetToMouse;
     private float zDistanceToCamera;
@@ -198,7 +195,6 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             return;
         }
 
-        dragging = true;
         UpdateOrderInLayer(300);
         UpdateRaycast(1 << LayerMask.NameToLayer("Slot"));
         zDistanceToCamera = Mathf.Abs(startPosition.z - Camera.main.transform.position.z);
@@ -225,8 +221,6 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     /// <param name="eventData">The object that is dragged.</param>
     public void OnEndDrag(PointerEventData eventData)
     {
-        UpdateOrderInLayer(-300);
-
         if (this.Placed)
         {
             return;
@@ -234,12 +228,11 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
         Slot targetSlot = eventData.pointerCurrentRaycast.gameObject?.GetComponent<Slot>();
 
-        dragging = false;
-
         if (targetSlot == null || (targetSlot != null && targetSlot.Occupied))
         {
             this.transform.position = startPosition;
             UpdateRaycast(1 << LayerMask.NameToLayer("PlayerCard"));
+            UpdateOrderInLayer(-300);
         }
     }
 }
