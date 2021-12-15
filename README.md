@@ -1,8 +1,8 @@
-# 🎮 Triple Triad 🎮
+# 🎴 Triple Triad 🎴
 Triple Triad minigame from Final Fantasy VIII made in Unity 2021.1.
 By default all rules are enable.
 
-## How to play?
+## How to play? 🎮
 You are the blue team and your objective is to capture as many cards from the red team as possible.
 If your points are greater than 5 you win, else you will lose.
 Each side of your card has a power level, if it is greater than the opposite side power of the enemy's card you will capture his card.
@@ -31,10 +31,10 @@ If the game ends in a draw, a sudden death occurs in which a new game is started
 ### Combos
 Of the cards captured by the Same, Same Wall or Plus rule, if they are adjacent to another card whose power is lower, it is captured as well.
 
-## Art
+## Art 🎨
 Every piece of art in this project was self-made using Aseprite.
 
-## Features
+## Features ✔️
 - [x] Capture cards.
 - [x] Points system.
 - [x] Turn system.
@@ -50,3 +50,4 @@ Every piece of art in this project was self-made using Aseprite.
 - [ ] Deck building.
 - [ ] Unlocking cards.
 - [ ] Settings (including rule settings).
+- [ ] Game feel.
