@@ -91,6 +91,8 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     public void Attack(bool isCombo = false)
     {
         int powerIndex = 0;
+        bool activeRule = false;
+        List<Card> capturedCards = new List<Card>();
         List<KeyValuePair<Card, bool>> sameRuleCards = new List<KeyValuePair<Card, bool>>();
         List<KeyValuePair<Card, int>> plusRuleCards = new List<KeyValuePair<Card, int>>();
 
@@ -110,7 +112,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
                 //Normal capture
                 if (CardData.Power[i] > enemy.CardData.Power[powerIndex])
                 {
-                    enemy.UpdateTeam(Team);
+                    capturedCards.Add(enemy);
                 }
 
                 //Same rule capture
@@ -134,8 +136,13 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             .ToList()
             .ForEach(pair =>
             {
-                pair.Key.UpdateTeam(Team);
-                pair.Key.Attack(true);
+                activeRule = true;
+
+                if (pair.Key.Team != this.Team)
+                {
+                    pair.Key.UpdateTeam(Team);
+                    pair.Key.Attack(true);
+                }
             });
 
             //Gets the cards that are affected by plus rule
@@ -145,10 +152,25 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             .ToList()
             .ForEach(pair =>
             {
-                pair.Key.UpdateTeam(Team);
-                pair.Key.Attack(true);
+                activeRule = true;
+
+                if (pair.Key.Team != this.Team)
+                {
+                    pair.Key.UpdateTeam(Team);
+                    pair.Key.Attack(true);
+                }
             });
         }
+
+        capturedCards.ForEach(card =>
+        {
+            card.UpdateTeam(this.Team);
+
+            if (activeRule)
+            {
+                card.Attack(true);
+            }
+        });
     }
 
     /// <summary>
