@@ -38,6 +38,7 @@ Every piece of art in this project was self-made using Aseprite.
 
 ## Features ✔️
 - [x] Capture cards.
+- [x] Easy card creation.
 - [x] Points system.
 - [x] Turn system.
 - [x] Elemental rule.
