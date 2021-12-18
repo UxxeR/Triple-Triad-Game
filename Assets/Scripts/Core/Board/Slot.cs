@@ -5,7 +5,7 @@ public class Slot : MonoBehaviour, IDropHandler
 {
     [Range(0f, 1f)] [SerializeField] private float elementalProbability = 0.3f;
     [SerializeField] private SpriteRenderer elementSprite;
-    [SerializeField] private ElementType elementType;
+    [field: SerializeField] public ElementType ElementType { get; set; }
     [field: SerializeField] public bool Occupied { get; set; } = false;
 
     /// <summary>
@@ -15,10 +15,10 @@ public class Slot : MonoBehaviour, IDropHandler
     {
         if (Random.Range(0f, 1f) < elementalProbability)
         {
-            elementType = (ElementType)Random.Range(1, System.Enum.GetNames(typeof(ElementType)).Length);
+            ElementType = (ElementType)Random.Range(1, System.Enum.GetNames(typeof(ElementType)).Length);
         }
 
-        elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{elementType.ToString()}");
+        elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{ElementType.ToString()}");
     }
 
     /// <summary>
@@ -52,9 +52,9 @@ public class Slot : MonoBehaviour, IDropHandler
         card.transform.SetParent(transform);
         card.transform.position = this.transform.position;
 
-        if (!(elementType == ElementType.NONE))
+        if (!(ElementType == ElementType.NONE))
         {
-            if (elementType == card.CardData.ElementType)
+            if (ElementType == card.CardData.ElementType)
             {
                 card.IncreasePower();
             }

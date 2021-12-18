@@ -110,7 +110,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             if (enemy != null && enemy.Placed)
             {
                 //Normal capture
-                if (CardData.Power[i] > enemy.CardData.Power[powerIndex])
+                if (CardData.Power[i] > enemy.CardData.Power[powerIndex] && enemy.Team != this.Team)
                 {
                     capturedCards.Add(enemy);
                 }
@@ -171,6 +171,120 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
                 card.Attack(true);
             }
         });
+    }
+
+    /// <summary>
+    /// Card will simulate an attack to the adjacent cards and add points if conquer them, apply plus, same, same wall and combo rules. Is a Minimax like solution with depth 0.
+    /// </summary>
+    /// <param name="slot">Slot in which will simulate the attack.</param>
+    /// <param name="isCombo">Especify if the attack is from the main card (combo = false) or if the attack is from an adjacent card (combo = true).</param>
+    public int AttackSimulation(Slot slot, bool isCombo = false)
+    {
+        int powerIndex = 0;
+        int simulationPoints = 0;
+        bool activeRule = false;
+        Slot capturedSlot;
+        List<Card> capturedCards = new List<Card>();
+        List<KeyValuePair<Card, bool>> sameRuleCards = new List<KeyValuePair<Card, bool>>();
+        List<KeyValuePair<Card, int>> plusRuleCards = new List<KeyValuePair<Card, int>>();
+
+        if (!isCombo)
+        {
+            this.transform.position = slot.transform.position;
+        }
+
+        if (CardData.ElementType == slot.ElementType)
+        {
+            ++simulationPoints;
+        }
+        else if (slot.ElementType != ElementType.NONE && CardData.ElementType != slot.ElementType)
+        {
+            --simulationPoints;
+        }
+
+        for (int i = 0; i < sides.Length; i++)
+        {
+            //Getting opposite side of power of enemy
+            Card enemy = this.sides[i].GetTarget();
+            powerIndex = i + 2;
+
+            if (powerIndex >= sides.Length)
+            {
+                powerIndex = powerIndex % 2;
+            }
+
+            if (enemy != null && enemy.Placed)
+            {
+                //Normal capture
+                if (CardData.Power[i] > enemy.CardData.Power[powerIndex] && enemy.Team != this.Team)
+                {
+                    capturedCards.Add(enemy);
+                }
+
+                //Same rule capture
+                sameRuleCards.Add(new KeyValuePair<Card, bool>(enemy, CardData.Power[i] == enemy.CardData.Power[powerIndex]));
+
+
+                //Plus rule capture
+                if (enemy.gameObject.layer != LayerMask.NameToLayer("Wall"))
+                {
+                    plusRuleCards.Add(new KeyValuePair<Card, int>(enemy, CardData.Power[i] + enemy.CardData.Power[powerIndex]));
+                }
+            }
+        }
+
+        if (!isCombo)
+        {
+            //Gets the cards that are affected by same rule
+            sameRuleCards.GroupBy(pair => pair.Value)
+            .Where(group => group.Count() >= 2 && group.Key)
+            .SelectMany(group => group)
+            .ToList()
+            .ForEach(pair =>
+            {
+                activeRule = true;
+
+                if (pair.Key.Team != this.Team)
+                {
+                    capturedSlot = pair.Key.GetComponentInParent<Slot>();
+                    simulationPoints += pair.Key.AttackSimulation(capturedSlot, true);
+                }
+            });
+
+            //Gets the cards that are affected by plus rule
+            plusRuleCards.GroupBy(pair => pair.Value)
+            .Where(group => group.Count() >= 2)
+            .SelectMany(group => group)
+            .ToList()
+            .ForEach(pair =>
+            {
+                activeRule = true;
+
+                if (pair.Key.Team != this.Team)
+                {
+                    capturedSlot = pair.Key.GetComponentInParent<Slot>();
+                    simulationPoints += pair.Key.AttackSimulation(capturedSlot, true);
+                }
+            });
+        }
+
+        capturedCards.ForEach(card =>
+        {
+            simulationPoints += 2;
+
+            if (activeRule)
+            {
+                capturedSlot = card.GetComponentInParent<Slot>();
+                simulationPoints += card.AttackSimulation(capturedSlot, true);
+            }
+        });
+
+        if (!isCombo)
+        {
+            this.transform.position = startPosition;
+        }
+
+        return simulationPoints;
     }
 
     /// <summary>
