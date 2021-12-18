@@ -1,10 +1,14 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class EnemyTurnState : BaseState
 {
     private float timeToAction = 0f;
+    private float behaviourProbability = 0.7f;
     private float MAX_THINKING_TIME;
+    private bool finished = false;
     private Slot slotSelected;
     private Card cardSelected;
 
@@ -13,13 +17,22 @@ public class EnemyTurnState : BaseState
     /// </summary>
     public override void Enter()
     {
+        finished = false;
+        timeToAction = 0f;
         turnController.TeamTurn = Team.RED;
+        MAX_THINKING_TIME = UnityEngine.Random.Range(0.7f, 1.2f);
         turnController.TurnIndicator.transform.position = new Vector3(Mathf.Abs(turnController.TurnIndicator.transform.position.x) * -1,
                                                                     turnController.TurnIndicator.transform.position.y,
                                                                     turnController.TurnIndicator.transform.position.z);
-        timeToAction = 0f;
-        MAX_THINKING_TIME = Random.Range(0.7f, 1.2f);
-        BasicAI();
+
+        if (UnityEngine.Random.Range(0f, 1f) < behaviourProbability)
+        {
+            AdvancedAI();
+        }
+        else
+        {
+            BasicAI();
+        }
     }
 
     /// <summary>
@@ -37,7 +50,7 @@ public class EnemyTurnState : BaseState
     {
         timeToAction += Time.deltaTime;
 
-        if (timeToAction >= MAX_THINKING_TIME)
+        if (timeToAction >= MAX_THINKING_TIME && finished)
         {
             cardSelected.UpdateOrderInLayer(300);
             slotSelected.PlaceCard(cardSelected);
@@ -61,5 +74,28 @@ public class EnemyTurnState : BaseState
     {
         slotSelected = GameController.Instance.Board.Slots.Where(slot => !slot.Occupied).FirstOrDefault();
         cardSelected = GameController.Instance.GameCards.Where(card => !card.Placed && card.Team == Team.RED).FirstOrDefault();
+        finished = true;
+    }
+
+    /// <summary>
+    /// Advanced artificial intelligence for the enemy.
+    /// Will drop the best card in the best slot possible. This is decided by a point system that will add points if the card capture some enemy cards.
+    /// </summary>
+    public void AdvancedAI()
+    {
+        List<Tuple<Card, Slot, int>> cardRanking = new List<Tuple<Card, Slot, int>>();
+
+        GameController.Instance.GameCards.Where(card => !card.Placed && card.Team == Team.RED).ToList().ForEach(card =>
+        {
+            GameController.Instance.Board.Slots.Where(slot => !slot.Occupied).ToList().ForEach(slot =>
+            {
+                cardRanking.Add(new Tuple<Card, Slot, int>(card, slot, card.AttackSimulation(slot)));
+            });
+        });
+
+        cardRanking = cardRanking.OrderByDescending(tuple => tuple.Item3).ToList();
+        cardSelected = cardRanking.FirstOrDefault().Item1;
+        slotSelected = cardRanking.FirstOrDefault().Item2;
+        finished = true;
     }
 }

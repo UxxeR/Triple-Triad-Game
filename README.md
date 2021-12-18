@@ -1,6 +1,6 @@
 # 🎴 Triple Triad 🎴
 Triple Triad minigame from Final Fantasy VIII made in Unity 2021.1. 
-By default all rules are enable.
+By default all rules are enabled.
 
 <img src="https://user-images.githubusercontent.com/25460362/146153168-ae48b436-b854-4a93-b6b0-e387cbe00b9d.png" width="800" height="450" alt="Game image"/>
 

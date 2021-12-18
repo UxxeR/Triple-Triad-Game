@@ -45,7 +45,7 @@ public class CustomColorAttribute : Attribute
     /// <summary>
     /// Create a color through hexadecimal code.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Returns a Color32.</returns>
     public Color32 HexadecimalToRGBColor()
     {
         Color color;
