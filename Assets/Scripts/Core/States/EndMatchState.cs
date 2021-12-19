@@ -18,6 +18,7 @@ public class EndMatchState : BaseState
         draw = false;
         gameController.UpdateRaycastPhysics(1 << LayerMask.NameToLayer("Nothing"));
         turnController.TurnIndicator.color = new CustomColorAttribute("#00000000").HexadecimalToRGBColor();
+        turnController.UpdateTimer();
 
         int blueScore = gameController.GameCards.Where(card => card.Team == Team.BLUE).Count();
 

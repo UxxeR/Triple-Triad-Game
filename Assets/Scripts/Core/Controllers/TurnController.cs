@@ -7,9 +7,13 @@ public class TurnController : MonoBehaviour
     private BaseState currentState;
     [field: SerializeField] public Team TeamTurn { get; set; }
     [field: SerializeField] public SpriteRenderer TurnIndicator { get; set; }
+    [field: SerializeField] public float TurnTimer { get; set; }
+    public const float MAX_TURN_TIMER = 30f;
     [HideInInspector] public bool TurnEnded { get; set; } = false;
     public Action<float> OnVisibilityUpdated { get; set; }
     public Action<Color, string> OnTurnUpdated { get; set; }
+    public Action<float> OnTimerProgressed { get; set; }
+    public Action<float> OnTimerUpdated { get; set; }
 
     /// <summary>
     /// Update the visibility of the turn UI.
@@ -33,6 +37,29 @@ public class TurnController : MonoBehaviour
         if (OnTurnUpdated != null)
         {
             OnTurnUpdated(backgroundColor, text);
+        }
+    }
+
+    /// <summary>
+    /// Update the progress of the turn timer.
+    /// </summary>
+    public void UpdateTimerProgress()
+    {
+        if (OnTimerProgressed != null)
+        {
+            OnTimerProgressed(Mathf.Clamp(TurnTimer, 0, MAX_TURN_TIMER));
+        }
+    }
+
+    /// <summary>
+    /// Update the initial value of the turn timer.
+    /// </summary>
+    public void UpdateTimer()
+    {
+        if (OnTimerUpdated != null)
+        {
+            TurnTimer = MAX_TURN_TIMER;
+            OnTimerUpdated(MAX_TURN_TIMER);
         }
     }
 

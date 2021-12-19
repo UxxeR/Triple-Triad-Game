@@ -49,9 +49,9 @@ Every piece of art in this project was self-made using Aseprite.
 - [x] Sudden death rule.
 - [x] Combos.
 - [x] Enemy basic AI.
-- [ ] Enemy advanced AI.
+- [x] Enemy advanced AI.
+- [x] Turn timer.
 - [ ] Deck building.
 - [ ] Unlocking cards.
-- [ ] Turn timer.
 - [ ] Settings (including rule settings).
 - [ ] Game feel.

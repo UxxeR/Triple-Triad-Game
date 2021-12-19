@@ -15,6 +15,7 @@ public class StartMatchState : BaseState
         turnDecided = false;
         turnController.UpdateTurnWindow(new CustomColorAttribute("#131313").HexadecimalToRGBColor(), $"ROLLING THE DICE...");
         turnController.UpdateTurnVisibility(1f);
+        turnController.UpdateTimer();
     }
 
     /// <summary>

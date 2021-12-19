@@ -18,6 +18,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     [field: SerializeField] public CardData CardData { get; set; }
     [field: SerializeField] public int[] OriginalPower { get; set; }
     [field: SerializeField] public bool Placed { get; set; } = false;
+    [field: SerializeField] public bool Dragging { get; set; } = false;
 
     /// <summary>
     /// First method that will be called when a script is enabled. Only called once.
@@ -335,6 +336,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         UpdateRaycast(1 << LayerMask.NameToLayer("Slot"));
         zDistanceToCamera = Mathf.Abs(startPosition.z - Camera.main.transform.position.z);
         offsetToMouse = startPosition - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zDistanceToCamera));
+        Dragging = true;
     }
 
     /// <summary>
