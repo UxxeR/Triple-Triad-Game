@@ -41,12 +41,20 @@ public class TurnUI : MonoBehaviour
         teamTurn.text = turn;
     }
 
+    /// <summary>
+    /// Update the progress of the turn timer.
+    /// </summary>
+    /// <param name="turnTimerProgress">The current time.</param>
     private void UpdateTurnTimer(float turnTimerProgress)
     {
         this.turnTimer.value = turnTimerProgress;
         this.turnTimerText.text = turnTimerProgress.ToString("0.00");
     }
 
+    /// <summary>
+    /// Update the initial value of the turn timer.
+    /// </summary>
+    /// <param name="maxTurnTimer">The time.</param>
     private void UpdateMaxTurnTimer(float maxTurnTimer)
     {
         this.turnTimer.maxValue = maxTurnTimer;

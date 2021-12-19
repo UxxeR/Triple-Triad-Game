@@ -40,6 +40,9 @@ public class TurnController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update the progress of the turn timer.
+    /// </summary>
     public void UpdateTimerProgress()
     {
         if (OnTimerProgressed != null)
@@ -48,6 +51,9 @@ public class TurnController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update the initial value of the turn timer.
+    /// </summary>
     public void UpdateTimer()
     {
         if (OnTimerUpdated != null)
