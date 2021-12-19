@@ -8,6 +8,7 @@ public class PlayerTurnState : BaseState
     /// </summary>
     public override void Enter()
     {
+        turnController.UpdateTimer();
         turnController.TurnEnded = false;
         turnController.TeamTurn = Team.BLUE;
         turnController.TurnIndicator.transform.position = new Vector3(Mathf.Abs(turnController.TurnIndicator.transform.position.x),
@@ -29,6 +30,16 @@ public class PlayerTurnState : BaseState
     /// </summary>
     public override void UpdateLogic()
     {
+        turnController.TurnTimer -= Time.deltaTime;
+        turnController.UpdateTimerProgress();
+
+        if (turnController.TurnTimer <= 0f)
+        {
+            BasicAI(Team.BLUE);
+            if(!cardSelected.Dragging) cardSelected.UpdateOrderInLayer(300);
+            slotSelected.PlaceCard(cardSelected);
+        }
+
         if (turnController.TurnEnded)
         {
             if (GameController.Instance.Board.Slots.Any(slot => !slot.Occupied))

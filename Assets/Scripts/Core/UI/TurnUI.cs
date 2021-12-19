@@ -6,6 +6,8 @@ public class TurnUI : MonoBehaviour
 {
     [SerializeField] private Image background;
     [SerializeField] private TMP_Text teamTurn;
+    [SerializeField] private Slider turnTimer;
+    [SerializeField] private TMP_Text turnTimerText;
     [SerializeField] private CanvasGroup canvasGroup;
 
     /// <summary>
@@ -15,6 +17,8 @@ public class TurnUI : MonoBehaviour
     {
         TurnController.Instance.OnVisibilityUpdated += UpdateVisibility;
         TurnController.Instance.OnTurnUpdated += UpdateTurnText;
+        TurnController.Instance.OnTimerUpdated += UpdateMaxTurnTimer;
+        TurnController.Instance.OnTimerProgressed += UpdateTurnTimer;
     }
 
     /// <summary>
@@ -35,5 +39,18 @@ public class TurnUI : MonoBehaviour
     {
         background.color = backgroundColor;
         teamTurn.text = turn;
+    }
+
+    private void UpdateTurnTimer(float turnTimerProgress)
+    {
+        this.turnTimer.value = turnTimerProgress;
+        this.turnTimerText.text = turnTimerProgress.ToString("0.00");
+    }
+
+    private void UpdateMaxTurnTimer(float maxTurnTimer)
+    {
+        this.turnTimer.maxValue = maxTurnTimer;
+        this.turnTimer.value = maxTurnTimer;
+        this.turnTimerText.text = maxTurnTimer.ToString("0.00");
     }
 }
