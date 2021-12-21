@@ -21,6 +21,9 @@ public class SettingsController : MonoBehaviour
     [field: SerializeField] public Toggle PlusRule { get; set; }
     [field: SerializeField] public Toggle ElementalRule { get; set; }
 
+    /// <summary>
+    /// First method that will be called when a script is enabled. Only called once.
+    /// </summary>
     private void Awake()
     {
         Instance = this;
@@ -35,6 +38,9 @@ public class SettingsController : MonoBehaviour
         SetSettings();
     }
 
+    /// <summary>
+    /// Save the current settings in a new file or override an existing file.
+    /// </summary>
     public void SaveSettings()
     {
         SetSettings();
@@ -53,6 +59,9 @@ public class SettingsController : MonoBehaviour
         DataSerialization.Save("Settings", DataController.Instance.Settings);
     }
 
+    /// <summary>
+    /// Set the current graphic settings.
+    /// </summary>
     private void SetSettings()
     {
         SetQuality(QualitySetting.CurrentIndex);
@@ -61,12 +70,18 @@ public class SettingsController : MonoBehaviour
         SetVsync(Vsync.isOn);
     }
 
+    /// <summary>
+    /// Cancel the current settings and return to the saved settings.
+    /// </summary>
     public void CancelSettings()
     {
         BindData();
         Refresh();
     }
 
+    /// <summary>
+    /// Bind the current settings with the UI elements.
+    /// </summary>
     private void BindData()
     {
         this.ResolutionSetting.CurrentIndex = DataController.Instance.Settings.ResolutionIndex;
@@ -83,6 +98,9 @@ public class SettingsController : MonoBehaviour
         this.ElementalRule.isOn = DataController.Instance.Settings.ElementalRule;
     }
 
+    /// <summary>
+    /// Refresh the current settings with the UI elements.
+    /// </summary>
     public void Refresh()
     {
         this.MusicSetting.UpdateValue();
@@ -91,21 +109,37 @@ public class SettingsController : MonoBehaviour
         this.QualitySetting.UpdateValue();
     }
 
+    /// <summary>
+    /// Enable or disable the fullscreen.
+    /// </summary>
+    /// <param name="isFullScreen">Fullscreen mode.</param>
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
     }
 
+    /// <summary>
+    /// Change the quality of the game.
+    /// </summary>
+    /// <param name="qualityIndex">Quality index.</param>
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
+    /// <summary>
+    /// Change the resolution of the game.
+    /// </summary>
+    /// <param name="resolution">The resolution.</param>
     public void SetResolution(Resolution resolution)
     {
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
+    /// <summary>
+    /// Enable or disable the Vsync.
+    /// </summary>
+    /// <param name="isVsync">Vsync mode.</param>
     public void SetVsync(bool isVsync)
     {
         if (isVsync)

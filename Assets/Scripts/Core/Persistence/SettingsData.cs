@@ -18,7 +18,9 @@ public class SettingsData : IData<SettingsData>
     [field: SerializeField] public bool PlusRule { get; set; }
     [field: SerializeField] public bool ElementalRule { get; set; }
 
-
+    /// <summary>
+    /// Default constructor of the class.
+    /// </summary>
     public SettingsData()
     {
         MusicVolume = 100f;
@@ -35,6 +37,9 @@ public class SettingsData : IData<SettingsData>
         ElementalRule = true;
     }
 
+    /// <summary>
+    /// Custom constructor of the class.
+    /// </summary>
     public SettingsData(float MusicVolume,
                         float SFXVolume,
                         int ResolutionIndex,
@@ -62,6 +67,10 @@ public class SettingsData : IData<SettingsData>
         this.ElementalRule = ElementalRule;
     }
 
+    /// <summary>
+    /// Get the settings data of the current UI elements.
+    /// </summary>
+    /// <returns>The settings data.</returns>
     public SettingsData GetData()
     {
         MusicVolume = SettingsController.Instance.MusicSetting.Slider.value;
@@ -90,6 +99,9 @@ public class SettingsData : IData<SettingsData>
                                 ElementalRule);
     }
 
+    /// <summary>
+    /// Set the settings data on the current UI elements.
+    /// </summary>
     public void SetData()
     {
         SettingsController.Instance.MusicSetting.Slider.value = MusicVolume;

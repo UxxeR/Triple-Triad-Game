@@ -5,6 +5,11 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private CanvasGroup currentSettingTab;
+
+    /// <summary>
+    /// Open a tab and change the information showed.
+    /// </summary>
+    /// <param name="settingWindow">Information window.</param>
     public void ChangeSettingsTab(CanvasGroup settingWindow)
     {
         if (currentSettingTab != null)
@@ -18,12 +23,19 @@ public class UIController : MonoBehaviour
         settingWindow.blocksRaycasts = true;
     }
 
+    /// <summary>
+    /// Show a new window UI.
+    /// </summary>
+    /// <param name="window">The window that will be shown.</param>
     public void ShowWindow(CanvasGroup window)
     {
         window.alpha = window.alpha < 1f ? 1f : 0f;
         window.blocksRaycasts = window.blocksRaycasts ? false : true;
     }
 
+    /// <summary>
+    /// Exit form the application.
+    /// </summary>
     public void Exit()
     {
         Application.Quit();

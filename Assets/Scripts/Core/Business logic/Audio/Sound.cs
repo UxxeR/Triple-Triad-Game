@@ -16,6 +16,10 @@ public class Sound : ScriptableObject, ITableElement
     [SerializeField] private AudioMixerGroup audioMixerGroup;
     private AudioSource audioSource;
 
+    /// <summary>
+    /// Set the audio source of the sound.
+    /// </summary>
+    /// <param name="source">The audiosource.</param>
     public void SetSource(AudioSource source)
     {
         audioSource = source;
@@ -25,6 +29,9 @@ public class Sound : ScriptableObject, ITableElement
         source.outputAudioMixerGroup = audioMixerGroup;
     }
 
+    /// <summary>
+    /// Play the sound.
+    /// </summary>
     public void Play()
     {
         if (clips.Length > 1)
@@ -37,11 +44,18 @@ public class Sound : ScriptableObject, ITableElement
         audioSource.Play();
     }
 
+    /// <summary>
+    /// Stop the sound.
+    /// </summary>
     public void Stop()
     {
         audioSource.Stop();
     }
 
+    /// <summary>
+    /// Check if the sound is playing.
+    /// </summary>
+    /// <returns>Return the sound isPlaying value.</returns>
     public bool IsPlaying()
     {
         if (audioSource.isPlaying)

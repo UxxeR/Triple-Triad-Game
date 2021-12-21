@@ -13,6 +13,9 @@ public class ListSettingUI<T> : ISetting
     [field: SerializeField] public List<T> Values { get; set; }
     public int CurrentIndex { get; set; }
 
+    /// <summary>
+    /// Update the list value and enable or disable the update buttons if the current value is on his upper or bottom limit.
+    /// </summary>
     public void UpdateValue()
     {
         if (CurrentIndex == 0)
@@ -34,6 +37,10 @@ public class ListSettingUI<T> : ISetting
         Value.text = Values[CurrentIndex].ToString().Split('@')[0];
     }
 
+    /// <summary>
+    /// Modify the current list index and update the text with his value.
+    /// </summary>
+    /// <param name="indexModification">Index modification.</param>
     public void ModifyIndex(int indexModification)
     {
         CurrentIndex += indexModification;

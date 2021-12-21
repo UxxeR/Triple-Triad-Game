@@ -9,6 +9,11 @@ public class DataSerialization
 {
     private static string directoryPath = $"{Application.persistentDataPath}\\Saves";
 
+    /// <summary>
+    /// Save the current data in a new file or override and existing file.
+    /// </summary>
+    /// <param name="fileName">The file name.</param>
+    /// <param name="data">The data that will be saved.</param>
     public static void Save(string fileName, object data)
     {
         try
@@ -33,6 +38,11 @@ public class DataSerialization
         }
     }
 
+    /// <summary>
+    /// Load an existing file data.
+    /// </summary>
+    /// <param name="fileName">The file name.</param>
+    /// <returns>The data of the file.</returns>
     public static object Load(string fileName)
     {
         try
