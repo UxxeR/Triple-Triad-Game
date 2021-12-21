@@ -1,8 +1,10 @@
 # 🎴 Triple Triad 🎴
 Triple Triad minigame from Final Fantasy VIII made in Unity 2021.1. 
-By default all rules are enable.
+By default all rules are enabled.
 
-<img src="https://user-images.githubusercontent.com/25460362/146153168-ae48b436-b854-4a93-b6b0-e387cbe00b9d.png" width="800" height="450" alt="Game image"/>
+<img src="https://user-images.githubusercontent.com/25460362/146896177-0ca711a5-c5e7-4aa2-a60e-7f21481e97af.png" width="800" height="450" alt="Menu image"/>
+<img src="https://user-images.githubusercontent.com/25460362/146896260-15889145-5637-4f4d-85ea-62ae8e97dca3.png" width="800" height="450" alt="Settings image"/>
+<img src="https://user-images.githubusercontent.com/25460362/146896503-91afe270-823a-4f35-b9d4-18914cc4173c.png" width="800" height="450" alt="Game image"/>
 
 ## How to play? 🎮
 You are the blue team and your objective is to capture as many cards from the red team as possible.
@@ -49,9 +51,9 @@ Every piece of art in this project was self-made using Aseprite.
 - [x] Sudden death rule.
 - [x] Combos.
 - [x] Enemy basic AI.
-- [ ] Enemy advanced AI.
+- [x] Enemy advanced AI.
+- [x] Turn timer.
+- [x] Settings (including rule settings).
 - [ ] Deck building.
 - [ ] Unlocking cards.
-- [ ] Turn timer.
-- [ ] Settings (including rule settings).
 - [ ] Game feel.
