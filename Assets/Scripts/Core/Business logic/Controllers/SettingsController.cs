@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour
 {
-    public static SettingsController Instance { get; set; }
+    public static SettingsController Instance { get; private set; }
     [field: SerializeField] public ListSettingUI<Resolution> ResolutionSetting { get; set; }
     [field: SerializeField] public ListSettingUI<string> QualitySetting { get; set; }
     [field: SerializeField] public VolumeSettingUI MusicSetting { get; set; }

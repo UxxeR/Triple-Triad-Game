@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DataController : MonoBehaviour
 {
-    public static DataController Instance;
+    public static DataController Instance { get; private set; }
     public SettingsData Settings { get; set; }
 
     /// <summary>
@@ -14,7 +14,14 @@ public class DataController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        LoadSettings();
+    }
 
+    /// <summary>
+    /// Load the saved settings or create a default ones.
+    /// </summary>
+    private void LoadSettings()
+    {
         try
         {
             Settings = (SettingsData)DataSerialization.Load("Settings");

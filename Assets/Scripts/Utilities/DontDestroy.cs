@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DontDestroy : MonoBehaviour
 {
-    public DontDestroy Instance { get; set; }
+    public DontDestroy Instance { get; private set; }
 
     /// <summary>
     /// First method that will be called when a script is enabled. Only called once.
