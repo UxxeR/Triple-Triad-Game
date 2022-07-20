@@ -73,7 +73,7 @@ public class EndMatchState : BaseState
 
         if (timeToShow > 4f)
         {
-            if (draw && DataController.Instance.Settings.SuddenDeathRule)
+            if (draw && DataController.Instance.SettingData.SuddenDeathRule)
             {
                 turnController.ChangeState(new StartMatchState());
             }

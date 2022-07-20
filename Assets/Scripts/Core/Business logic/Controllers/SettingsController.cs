@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,7 +41,7 @@ public class SettingsController : MonoBehaviour
     public void SaveSettings()
     {
         SetSettings();
-        DataController.Instance.Settings = new SettingsData(MusicSetting.Slider.value,
+        DataController.Instance.SettingData = new SettingsData(MusicSetting.Slider.value,
                                         SFXSetting.Slider.value,
                                         ResolutionSetting.CurrentIndex,
                                         QualitySetting.CurrentIndex,
@@ -56,7 +53,7 @@ public class SettingsController : MonoBehaviour
                                         RandomRule.isOn,
                                         PlusRule.isOn,
                                         ElementalRule.isOn);
-        DataSerialization.Save("Settings", DataController.Instance.Settings);
+        DataSerialization.Save("Settings", DataController.Instance.SettingData);
     }
 
     /// <summary>
@@ -84,18 +81,18 @@ public class SettingsController : MonoBehaviour
     /// </summary>
     private void BindData()
     {
-        this.ResolutionSetting.CurrentIndex = DataController.Instance.Settings.ResolutionIndex;
-        this.QualitySetting.CurrentIndex = DataController.Instance.Settings.QualityIndex;
-        this.MusicSetting.Slider.value = DataController.Instance.Settings.MusicVolume;
-        this.SFXSetting.Slider.value = DataController.Instance.Settings.SFXVolume;
-        this.FullScreen.isOn = DataController.Instance.Settings.FullScreen;
-        this.Vsync.isOn = DataController.Instance.Settings.Vsync;
-        this.SameRule.isOn = DataController.Instance.Settings.SameRule;
-        this.SameWallRule.isOn = DataController.Instance.Settings.SameWallRule;
-        this.SuddenDeathRule.isOn = DataController.Instance.Settings.SuddenDeathRule;
-        this.RandomRule.isOn = DataController.Instance.Settings.RandomRule;
-        this.PlusRule.isOn = DataController.Instance.Settings.PlusRule;
-        this.ElementalRule.isOn = DataController.Instance.Settings.ElementalRule;
+        this.ResolutionSetting.CurrentIndex = DataController.Instance.SettingData.ResolutionIndex;
+        this.QualitySetting.CurrentIndex = DataController.Instance.SettingData.QualityIndex;
+        this.MusicSetting.Slider.value = DataController.Instance.SettingData.MusicVolume;
+        this.SFXSetting.Slider.value = DataController.Instance.SettingData.SFXVolume;
+        this.FullScreen.isOn = DataController.Instance.SettingData.FullScreen;
+        this.Vsync.isOn = DataController.Instance.SettingData.Vsync;
+        this.SameRule.isOn = DataController.Instance.SettingData.SameRule;
+        this.SameWallRule.isOn = DataController.Instance.SettingData.SameWallRule;
+        this.SuddenDeathRule.isOn = DataController.Instance.SettingData.SuddenDeathRule;
+        this.RandomRule.isOn = DataController.Instance.SettingData.RandomRule;
+        this.PlusRule.isOn = DataController.Instance.SettingData.PlusRule;
+        this.ElementalRule.isOn = DataController.Instance.SettingData.ElementalRule;
     }
 
     /// <summary>
