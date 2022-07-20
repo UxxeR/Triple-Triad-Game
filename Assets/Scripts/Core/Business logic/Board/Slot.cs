@@ -13,7 +13,7 @@ public class Slot : MonoBehaviour, IDropHandler
     /// </summary>
     private void Awake()
     {
-        if (Random.Range(0f, 1f) < elementalProbability && DataController.Instance.Settings.ElementalRule)
+        if (Random.Range(0f, 1f) < elementalProbability && DataController.Instance.SettingData.ElementalRule)
         {
             ElementType = (ElementType)Random.Range(1, System.Enum.GetNames(typeof(ElementType)).Length);
         }

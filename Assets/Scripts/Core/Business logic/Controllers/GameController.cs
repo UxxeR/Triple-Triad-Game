@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
         Board.Slots.Shuffle();
         GameCards.Shuffle();
 
-        if (DataController.Instance.Settings.RandomRule)
+        if (DataController.Instance.SettingData.RandomRule)
         {
             GameCards.ForEach(card => card.CardData = CardDatabase.Instance.GetRandomElement());
         }

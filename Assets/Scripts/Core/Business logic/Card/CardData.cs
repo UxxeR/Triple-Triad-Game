@@ -5,8 +5,8 @@ public class CardData : ScriptableObject, ITableElement
 {
     [field: SerializeField] public string Id { get; set; }
     [field: SerializeField] public string CardName { get; set; }
-    [field: SerializeField] public string CardDescription { get; set; }
-    [field: Range(1, 10)] [field: Min(1)] [field: SerializeField] public int[] Power { get; set; } = new int[4];
+    [field: SerializeField][field: TextArea] public string CardDescription { get; set; }
+    [field: Range(1, 10)][field: Min(1)][field: SerializeField] public int[] Power { get; set; } = new int[4];
     [field: SerializeField] public Sprite CardSprite { get; set; }
     [field: SerializeField] public ElementType ElementType { get; set; }
 }

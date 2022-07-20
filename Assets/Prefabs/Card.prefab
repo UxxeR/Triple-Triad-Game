@@ -727,13 +727,13 @@ MonoBehaviour:
   - {fileID: 2171726251250935825}
   - {fileID: 599145693927394122}
   - {fileID: 5503585314037388838}
-  dragging: 0
   startPosition: {x: 0, y: 0, z: 0}
   <Team>k__BackingField: 0
   <Power>k__BackingField: 0
   <CardData>k__BackingField: {fileID: 11400000, guid: eb8a8ed297d7d8a4c944c57cba6280df, type: 2}
   <OriginalPower>k__BackingField: 
   <Placed>k__BackingField: 0
+  <Dragging>k__BackingField: 0
 --- !u!61 &968554260391418864
 BoxCollider2D:
   m_ObjectHideFlags: 0

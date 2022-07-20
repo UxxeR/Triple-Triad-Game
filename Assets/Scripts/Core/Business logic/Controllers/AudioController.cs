@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class AudioController : MonoBehaviour
 {
-    public static AudioController Instance;
+    public static AudioController Instance { get; private set; }
     [field: SerializeField] public AudioMixerGroup AudioMixerGroup { get; set; }
 
     /// <summary>
