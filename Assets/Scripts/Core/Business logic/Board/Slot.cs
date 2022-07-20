@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Slot : MonoBehaviour, IDropHandler
 {
-    [Range(0f, 1f)] [SerializeField] private float elementalProbability = 0.3f;
-    [SerializeField] private SpriteRenderer elementSprite;
+    [Range(0f, 1f)][SerializeField] private float elementalProbability = 0.3f;
+    [SerializeField] private Image elementSprite;
     [field: SerializeField] public ElementType ElementType { get; set; } = 0;
     [field: SerializeField] public bool Occupied { get; set; } = false;
 
@@ -49,8 +50,7 @@ public class Slot : MonoBehaviour, IDropHandler
         Occupied = true;
         card.Placed = true;
         card.Dragging = false;
-        card.UpdateOrderInLayer(-300);
-        card.transform.SetParent(transform);
+        card.transform.SetParent(this.transform, false);
         card.transform.position = this.transform.position;
 
         if (!(ElementType == ElementType.NONE))

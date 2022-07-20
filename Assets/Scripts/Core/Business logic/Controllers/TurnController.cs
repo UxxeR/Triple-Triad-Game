@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnController : MonoBehaviour
 {
     public static TurnController Instance { get; private set; }
     private BaseState currentState;
     [field: SerializeField] public Team TeamTurn { get; set; }
-    [field: SerializeField] public SpriteRenderer TurnIndicator { get; set; }
+    [field: SerializeField] public Image TurnIndicator { get; set; }
     [field: SerializeField] public float TurnTimer { get; set; }
     public const float MAX_TURN_TIMER = 30f;
     [HideInInspector] public bool TurnEnded { get; set; } = false;

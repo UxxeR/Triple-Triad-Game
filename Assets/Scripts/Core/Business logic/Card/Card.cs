@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    [SerializeField] private SpriteRenderer background;
-    [SerializeField] private SpriteRenderer cardSprite;
-    [SerializeField] private SpriteRenderer elementSprite;
-    [SerializeField] private SpriteRenderer frameSprite;
+    [SerializeField] private Image background;
+    [SerializeField] private Image cardSprite;
+    [SerializeField] private Image elementSprite;
+    [SerializeField] private Image frameSprite;
+    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Side[] sides = new Side[4];
     public Vector3 startPosition;
     private Vector3 offsetToMouse;
@@ -71,17 +73,19 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     /// <param name="layer">New layer number that will be summed.</param>
     public void UpdateOrderInLayer(int layer)
     {
-        background.sortingOrder += layer;
-        cardSprite.sortingOrder += layer;
-        elementSprite.sortingOrder += layer;
-        frameSprite.sortingOrder += layer;
+        //this.transform.SetParent(GetComponentInParent<Canvas>().transform);
+        //this.transform.SetAsLastSibling();
+        //background.sortingOrder += layer;
+        //cardSprite.sortingOrder += layer;
+        //elementSprite.sortingOrder += layer;
+        //frameSprite.sortingOrder += layer;
 
-        foreach (Side side in sides)
-        {
-            side.Background.sortingOrder += layer;
-            side.Frame.sortingOrder += layer;
-            side.PowerText.GetComponent<MeshRenderer>().sortingOrder += layer;
-        }
+        //foreach (Side side in sides)
+        //{
+        //    side.Background.sortingOrder += layer;
+        //    side.Frame.sortingOrder += layer;
+        //    side.PowerText.GetComponent<MeshRenderer>().sortingOrder += layer;
+        //}
 
     }
 
@@ -336,6 +340,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         }
 
         UpdateOrderInLayer(300);
+        canvasGroup.blocksRaycasts = false;
         UpdateRaycast(1 << LayerMask.NameToLayer("Slot"));
         zDistanceToCamera = Mathf.Abs(startPosition.z - Camera.main.transform.position.z);
         offsetToMouse = startPosition - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zDistanceToCamera));
@@ -375,18 +380,20 @@ public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             UpdateRaycast(1 << LayerMask.NameToLayer("PlayerCard"));
             UpdateOrderInLayer(-300);
         }
+
+        canvasGroup.blocksRaycasts = true;
     }
 }
 
 public enum Team
 {
-    [CustomColor("#222A5E")] BLUE = 0,
-    [CustomColor("#5E2228")] RED = 1
+    [CustomColor("#222A5EFF")] BLUE = 0,
+    [CustomColor("#5E2228FF")] RED = 1
 }
 
 public enum Power
 {
-    [CustomColor("#FFFFFF")] NORMAL = 0,
-    [CustomColor("#52F113")] INCREASED = 1,
-    [CustomColor("#F1141B")] DECREASED = 2
+    [CustomColor("#FFFFFFFF")] NORMAL = 0,
+    [CustomColor("#52F113FF")] INCREASED = 1,
+    [CustomColor("#F1141BFF")] DECREASED = 2
 }

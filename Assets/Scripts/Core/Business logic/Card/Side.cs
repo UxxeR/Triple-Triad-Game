@@ -1,13 +1,14 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Side : MonoBehaviour
 {
     [SerializeField] private Vector3 raycastOffset;
     [SerializeField] private Vector3 raycastVector;
     [SerializeField] private SideName sideName;
-    [field: SerializeField] public SpriteRenderer Background { get; set; }
-    [field: SerializeField] public SpriteRenderer Frame { get; set; }
+    [field: SerializeField] public Image Background { get; set; }
+    [field: SerializeField] public Image Frame { get; set; }
     [field: SerializeField] public TMP_Text PowerText { get; set; }
 
     /// <summary>
