@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,9 +23,8 @@ public class CollectionCard : MonoBehaviour
         elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{CardData.ElementType}");
         button.onClick.AddListener(() =>
         {
-            CollectionController.Instance.CardNameText.text = CardData.CardName;
-            CollectionController.Instance.CardDescriptionText.text = CardData.CardDescription;
-            CollectionController.Instance.CardInformationCanvasGroup.alpha = 1f;
+            CollectionController.Instance.UpdateCardInformation(CardData.CardName, CardData.CardDescription);
+            CollectionController.Instance.UpdateCardInformationVisibility(1f);
         }
         );
     }
