@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EndMatchState : BaseState
 {
@@ -25,6 +25,14 @@ public class EndMatchState : BaseState
         if (blueScore > gameController.GameCards.Count / 2)
         {
             turnController.UpdateTurnWindow(GenericAttribute.GetAttribute<CustomColorAttribute>(Team.BLUE).HexadecimalToRGBColor(), $"{Team.BLUE.ToString()} WIN");
+            string idCardUnlocked = UnlockEnemyCard();
+
+            if (idCardUnlocked != string.Empty)
+            {
+                Player.Instance.UnlockedIdCards.Add(idCardUnlocked);
+                DataController.Instance.SavePlayerData();
+            }
+
         }
         else if (blueScore < gameController.GameCards.Count / 2)
         {
@@ -73,7 +81,7 @@ public class EndMatchState : BaseState
 
         if (timeToShow > 4f)
         {
-            if (draw && DataController.Instance.Settings.SuddenDeathRule)
+            if (draw && DataController.Instance.SettingData.SuddenDeathRule)
             {
                 turnController.ChangeState(new StartMatchState());
             }
@@ -82,5 +90,32 @@ public class EndMatchState : BaseState
                 turnController.UpdateTurnVisibility(1f, true);
             }
         }
+    }
+
+    public string UnlockRandomCard()
+    {
+
+        string cardId = string.Empty;
+        List<CardData> card = CardDatabase.Instance.GetAllElement().Where(card => !Player.Instance.UnlockedIdCards.Contains(card.Id)).ToList();
+
+        if (card.Count != 0)
+        {
+            cardId = card[new System.Random().Next(card.Count)].Id;
+        }
+
+        return cardId;
+    }
+
+    public string UnlockEnemyCard()
+    {
+        string cardId = string.Empty;
+        List<Card> card = GameController.Instance.GameCards.Where(card => card.Team == Team.RED && !Player.Instance.UnlockedIdCards.Contains(card.CardData.Id)).ToList();
+
+        if (card.Count != 0)
+        {
+            cardId = card[new System.Random().Next(card.Count)].CardData.Id;
+        }
+
+        return cardId;
     }
 }

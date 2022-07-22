@@ -1,22 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 [System.Serializable]
 public class SettingsData : IData<SettingsData>
 {
-    [field: SerializeField] public float MusicVolume { get; set; }
-    [field: SerializeField] public float SFXVolume { get; set; }
-    [field: SerializeField] public int ResolutionIndex { get; set; }
-    [field: SerializeField] public int QualityIndex { get; set; }
-    [field: SerializeField] public bool FullScreen { get; set; }
-    [field: SerializeField] public bool Vsync { get; set; }
-    [field: SerializeField] public bool SameRule { get; set; }
-    [field: SerializeField] public bool SameWallRule { get; set; }
-    [field: SerializeField] public bool SuddenDeathRule { get; set; }
-    [field: SerializeField] public bool RandomRule { get; set; }
-    [field: SerializeField] public bool PlusRule { get; set; }
-    [field: SerializeField] public bool ElementalRule { get; set; }
+    public float MusicVolume { get; set; }
+    public float SFXVolume { get; set; }
+    public int ResolutionIndex { get; set; }
+    public int QualityIndex { get; set; }
+    public bool FullScreen { get; set; }
+    public bool Vsync { get; set; }
+    public bool SameRule { get; set; }
+    public bool SameWallRule { get; set; }
+    public bool SuddenDeathRule { get; set; }
+    public bool RandomRule { get; set; }
+    public bool PlusRule { get; set; }
+    public bool ElementalRule { get; set; }
 
     /// <summary>
     /// Default constructor of the class.

@@ -59,7 +59,7 @@ public class StartMatchState : BaseState
     public void DecideTeamTurn()
     {
         turnController.TeamTurn = (Team)Random.Range(0, System.Enum.GetNames(typeof(Team)).Length);
-        turnController.UpdateTurnWindow(GenericAttribute.GetAttribute<CustomColorAttribute>(turnController.TeamTurn).HexadecimalToRGBColor(), $"{turnController.TeamTurn.ToString()} TURN");
+        turnController.UpdateTurnWindow(GenericAttribute.GetAttribute<CustomColorAttribute>(turnController.TeamTurn).HexadecimalToRGBColor(), $"{turnController.TeamTurn} TURN");
         turnDecided = true;
     }
 }

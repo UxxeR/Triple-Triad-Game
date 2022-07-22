@@ -11,7 +11,7 @@ public class Board : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        if (!DataController.Instance.Settings.SameWallRule)
+        if (!DataController.Instance.SettingData.SameWallRule)
         {
             Walls.ForEach(wall => wall.gameObject.SetActive(false));
         }

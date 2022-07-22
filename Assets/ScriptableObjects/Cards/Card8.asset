@@ -14,7 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: card8
   <CardName>k__BackingField: card
-  <CardDescription>k__BackingField: card
+  <CardDescription>k__BackingField: 'Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit. Donec ac mi sed justo accumsan dignissim nec in purus. Class aptent taciti
+    sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam
+    dui magna, fermentum et lorem et, molestie finibus tellus. In vel euismod arcu,
+    ut vulputate nulla. Aliquam egestas laoreet magna sed tristique. Ut maximus dui
+    nibh, a lobortis lorem euismod quis. Nulla eu ultricies metus. Vivamus at arcu
+    at tellus posuere malesuada. In hac habitasse platea dictumst. Phasellus vitae
+    pulvinar nibh. In mattis arcu at leo rutrum, id accumsan libero fermentum.
+
+    
+
+    Vivamus
+    quis ante eleifend massa interdum tristique. Etiam ac ex fringilla, varius sem
+    in, dapibus lacus. Vivamus non molestie ipsum. Curabitur ante massa, euismod
+    ac maximus quis, dapibus ut justo. Proin non aliquam enim. Nullam vestibulum
+    turpis felis, a semper lorem ornare consequat. Nunc sed magna et elit posuere
+    aliquet. Nam arcu lacus, consectetur ut malesuada eu, ultricies eu eros.
+
+    
+
+    Morbi
+    convallis felis in semper mattis. Orci varius natoque penatibus et magnis dis
+    parturient montes, nascetur ridiculus mus. Nulla facilisi. Fusce sit amet mattis
+    erat. Morbi ut sodales odio. Aliquam erat volutpat. Praesent ultricies a purus
+    eu imperdiet. Suspendisse ultrices blandit mauris, eget hendrerit orci imperdiet
+    eu. Cras non ipsum quis magna bibendum lobortis. Pellentesque vulputate mauris
+    eros, in pellentesque turpis tincidunt vitae. Mauris purus nulla, consectetur
+    sed mattis id, pellentesque sit amet nisi. Mauris at elit et tellus pretium tempor.'
   <Power>k__BackingField: 08000000030000000100000004000000
-  <CardSprite>k__BackingField: {fileID: 0}
+  <CardSprite>k__BackingField: {fileID: 21300000, guid: 022e78427e7e80443a1a3f3ed0cb5456, type: 3}
   <ElementType>k__BackingField: 4

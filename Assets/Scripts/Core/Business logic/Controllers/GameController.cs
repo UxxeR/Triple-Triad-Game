@@ -29,11 +29,22 @@ public class GameController : MonoBehaviour
         Board.Slots.Shuffle();
         GameCards.Shuffle();
 
-        if (DataController.Instance.Settings.RandomRule)
+        if (DataController.Instance.SettingData.RandomRule)
         {
             GameCards.ForEach(card => card.CardData = CardDatabase.Instance.GetRandomElement());
         }
-        
+        else
+        {
+            List<Card> blueCards = GameCards.Where(card => card.Team == Team.BLUE).ToList();
+
+            for (int i = 0; i < blueCards.Count; i++)
+            {
+                blueCards[i].CardData = CardDatabase.Instance.FindElementById(Player.Instance.CurrentDeck.CardIds[i]);
+            }
+
+            GameCards.Except(blueCards).ToList().ForEach(card => card.CardData = CardDatabase.Instance.GetRandomElement());
+        }
+
         TurnController.Instance.ChangeState(new StartMatchState());
     }
 

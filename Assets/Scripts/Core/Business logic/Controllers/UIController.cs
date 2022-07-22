@@ -1,10 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    public static UIController Instance;
     [SerializeField] private CanvasGroup currentSettingTab;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     /// <summary>
     /// Open a tab and change the information showed.
@@ -26,18 +30,10 @@ public class UIController : MonoBehaviour
     /// <summary>
     /// Show a new window UI.
     /// </summary>
-    /// <param name="window">The window that will be shown.</param>
+    /// <param name="window">The CanvasGroup component from the window that will be shown.</param>
     public void ShowWindow(CanvasGroup window)
     {
         window.alpha = window.alpha < 1f ? 1f : 0f;
         window.blocksRaycasts = window.blocksRaycasts ? false : true;
-    }
-
-    /// <summary>
-    /// Exit form the application.
-    /// </summary>
-    public void Exit()
-    {
-        Application.Quit();
     }
 }
