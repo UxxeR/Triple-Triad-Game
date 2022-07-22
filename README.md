@@ -3,12 +3,23 @@ Triple Triad minigame from Final Fantasy VIII made in Unity 2022.1.
 By default all rules are enabled.
 
 ## User interface 👀
+### Menu
 <img src="https://user-images.githubusercontent.com/25460362/180471161-76036169-9057-4cfd-b1de-e0b2f85f5819.png" width="800" height="450" alt="Menu image"/>
+
+### Settings
 <img src="https://user-images.githubusercontent.com/25460362/180471270-382e7afb-f4e0-47f0-9f2e-80c3b2f97390.png" width="800" height="450" alt="Settings image"/>
+
+### Collection
 <img src="https://user-images.githubusercontent.com/25460362/180471386-e53749a3-b9b4-4a9a-99db-69f1c5e18026.png" width="800" height="450" alt="Collection image"/>
+
+### Deck selection
 <img src="https://user-images.githubusercontent.com/25460362/180471444-bbb584c1-0ae6-453a-a1e0-d453ae6fbea4.png" width="800" height="450" alt="Deck selection image"/>
+
+### Deck editor
 <img src="https://user-images.githubusercontent.com/25460362/180471574-48165ca6-7663-4044-9058-8e05c1a66991.png" width="800" height="450" alt="Deck editor image"/>
-<img src="https://user-images.githubusercontent.com/25460362/180471904-b5a14376-5bed-462b-a85f-072beca7dc99.png" width="800" height="450" alt="Game image"/>
+
+### Gameplay
+<img src="https://user-images.githubusercontent.com/25460362/180471904-b5a14376-5bed-462b-a85f-072beca7dc99.png" width="800" height="450" alt="Gameplay image"/>
 
 ## How to play? 🎮
 You are the blue team and your objective is to capture as many cards from the red team as possible.
