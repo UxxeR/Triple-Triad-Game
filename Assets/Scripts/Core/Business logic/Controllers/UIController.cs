@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    public static UIController Instance;
     [SerializeField] private CanvasGroup currentSettingTab;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     /// <summary>
     /// Open a tab and change the information showed.
