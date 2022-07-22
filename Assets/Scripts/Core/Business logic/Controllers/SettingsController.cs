@@ -24,7 +24,7 @@ public class SettingsController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        ResolutionSetting.Values = Screen.resolutions.ToList();
+        ResolutionSetting.Values = Screen.resolutions.Where(resolution => resolution.refreshRate == Screen.currentResolution.refreshRate).ToList();
         QualitySetting.Values = QualitySettings.names.ToList();
         ResolutionSetting.AddButton.onClick.AddListener(() => ResolutionSetting.ModifyIndex(1));
         ResolutionSetting.SubtractButton.onClick.AddListener(() => ResolutionSetting.ModifyIndex(-1));
