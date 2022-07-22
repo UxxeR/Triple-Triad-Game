@@ -5,7 +5,8 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; set; }
     public List<string> UnlockedIdCards { get; set; } = new List<string>();
-    public List<string> IdDecks { get; set; } = new List<string>();
+    public List<DeckData> Decks { get; set; } = new List<DeckData>();
+    public DeckData CurrentDeck { get; set; }
 
     // Start is called before the first frame update
     private void Awake()

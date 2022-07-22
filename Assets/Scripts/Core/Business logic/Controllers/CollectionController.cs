@@ -54,6 +54,7 @@ public class CollectionController : MonoBehaviour
             if (!Player.Instance.UnlockedIdCards.Contains(card.CardData.Id))
             {
                 card.CanvasGroup.interactable = false;
+                card.CanvasGroup.alpha = 0.7f;
             }
         });
     }

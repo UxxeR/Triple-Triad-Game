@@ -1,33 +1,38 @@
 using System.Collections.Generic;
+using System.Linq;
 
 [System.Serializable]
 public class PlayerData : IData<PlayerData>
 {
     public List<string> UnlockedIdCards { get; set; } = new List<string>();
-    public List<string> IdDecks { get; set; } = new List<string>();
+    public List<DeckData> Decks { get; set; } = new List<DeckData>();
+    public DeckData CurrentDeck { get; set; }
 
     public PlayerData()
     {
         UnlockedIdCards = new List<string>() { "card", "card1", "card2", "card3", "card4" };
-        IdDecks = new List<string>() { "default" };
+        Decks = new List<DeckData>() { new DeckData("default", new List<string>() { "card", "card1", "card2", "card3", "card4" }, true) };
+        CurrentDeck = Decks.FirstOrDefault();
     }
 
-    public PlayerData(List<string> unlockedCards, List<string> decks)
+    public PlayerData(List<string> UnlockedCards, List<DeckData> Decks, DeckData CurrentDeck)
     {
-        UnlockedIdCards = unlockedCards;
-        IdDecks = decks;
+        this.UnlockedIdCards = UnlockedCards;
+        this.Decks = Decks;
+        this.CurrentDeck = CurrentDeck;
     }
 
     public PlayerData GetData()
     {
         this.UnlockedIdCards = Player.Instance.UnlockedIdCards;
-        this.IdDecks = Player.Instance.IdDecks;
-        return new PlayerData(this.UnlockedIdCards, this.IdDecks);
+        this.Decks = Player.Instance.Decks;
+        return new PlayerData(this.UnlockedIdCards, this.Decks, this.CurrentDeck);
     }
 
     public void SetData()
     {
         Player.Instance.UnlockedIdCards = this.UnlockedIdCards;
-        Player.Instance.IdDecks = this.IdDecks;
+        Player.Instance.Decks = this.Decks;
+        Player.Instance.CurrentDeck = this.CurrentDeck;
     }
 }
