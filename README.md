@@ -56,7 +56,7 @@ Of the cards captured by the Same, Same Wall or Plus rule, if they are adjacent 
 ## Art 🎨
 Every piece of art in this project was self-made using Aseprite.
 
-# Game localization
+## Game localization
 Uses the Unity localization package v1.0.5.
 The game is available to play in both English and Spanish.
 
