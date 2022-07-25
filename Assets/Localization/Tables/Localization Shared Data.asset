@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Localization Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Menu
+  m_TableCollectionNameGuidString: e57b82f869409674bbc1497e73d4f963
+  m_Entries:
+  - m_Id: 54894211072
+    m_Key: PlayText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 290026893312
+    m_Key: DecksText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 376970620928
+    m_Key: CollectionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 441055391744
+    m_Key: SettingsText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 479760429056
+    m_Key: ExitText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2566590246912
+    m_Key: AcceptText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2640800067584
+    m_Key: CancelText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2905540341760
+    m_Key: SaveText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3236198297600
+    m_Key: BackText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3560594157568
+    m_Key: CreateText
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4339869726465851420
+  references:
+    version: 2
+    RefIds:
+    - rid: 4339869726465851420
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1658739807413

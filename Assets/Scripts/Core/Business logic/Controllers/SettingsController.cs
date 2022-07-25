@@ -1,5 +1,8 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour
@@ -7,6 +10,7 @@ public class SettingsController : MonoBehaviour
     public static SettingsController Instance { get; private set; }
     [field: SerializeField] public ListSettingUI<Resolution> ResolutionSetting { get; set; }
     [field: SerializeField] public ListSettingUI<string> QualitySetting { get; set; }
+    [field: SerializeField] public ListSettingUI<Locale> LanguageSetting { get; set; }
     [field: SerializeField] public VolumeSettingUI MusicSetting { get; set; }
     [field: SerializeField] public VolumeSettingUI SFXSetting { get; set; }
     [field: SerializeField] public Toggle FullScreen { get; set; }
@@ -24,12 +28,21 @@ public class SettingsController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        StartCoroutine(LoadSettings());
+    }
+
+    public IEnumerator LoadSettings()
+    {
         ResolutionSetting.Values = Screen.resolutions.Where(resolution => resolution.refreshRate == Screen.currentResolution.refreshRate).ToList();
         QualitySetting.Values = QualitySettings.names.ToList();
+        LanguageSetting.Values = LocalizationSettings.Instance.GetAvailableLocales().Locales;
+        LanguageSetting.AddButton.onClick.AddListener(() => LanguageSetting.ModifyIndex(1));
+        LanguageSetting.SubtractButton.onClick.AddListener(() => LanguageSetting.ModifyIndex(-1));
         ResolutionSetting.AddButton.onClick.AddListener(() => ResolutionSetting.ModifyIndex(1));
         ResolutionSetting.SubtractButton.onClick.AddListener(() => ResolutionSetting.ModifyIndex(-1));
         QualitySetting.AddButton.onClick.AddListener(() => QualitySetting.ModifyIndex(1));
         QualitySetting.SubtractButton.onClick.AddListener(() => QualitySetting.ModifyIndex(-1));
+        yield return new WaitUntil(() => LanguageSetting.Values.Count > 0);
         BindData();
         Refresh();
         SetSettings();
@@ -45,6 +58,7 @@ public class SettingsController : MonoBehaviour
                                         SFXSetting.Slider.value,
                                         ResolutionSetting.CurrentIndex,
                                         QualitySetting.CurrentIndex,
+                                        LanguageSetting.CurrentIndex,
                                         FullScreen.isOn,
                                         Vsync.isOn,
                                         SameRule.isOn,
@@ -57,12 +71,13 @@ public class SettingsController : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the current graphic settings.
+    /// Set the current settings.
     /// </summary>
     private void SetSettings()
     {
         SetQuality(QualitySetting.CurrentIndex);
         SetResolution(ResolutionSetting.Values[ResolutionSetting.CurrentIndex]);
+        SetLanguage(LanguageSetting.Values[LanguageSetting.CurrentIndex]);
         SetFullScreen(FullScreen.isOn);
         SetVsync(Vsync.isOn);
     }
@@ -83,6 +98,7 @@ public class SettingsController : MonoBehaviour
     {
         this.ResolutionSetting.CurrentIndex = DataController.Instance.SettingData.ResolutionIndex;
         this.QualitySetting.CurrentIndex = DataController.Instance.SettingData.QualityIndex;
+        this.LanguageSetting.CurrentIndex = DataController.Instance.SettingData.LanguageIndex;
         this.MusicSetting.Slider.value = DataController.Instance.SettingData.MusicVolume;
         this.SFXSetting.Slider.value = DataController.Instance.SettingData.SFXVolume;
         this.FullScreen.isOn = DataController.Instance.SettingData.FullScreen;
@@ -104,6 +120,7 @@ public class SettingsController : MonoBehaviour
         this.SFXSetting.UpdateValue();
         this.ResolutionSetting.UpdateValue();
         this.QualitySetting.UpdateValue();
+        this.LanguageSetting.UpdateValue();
     }
 
     /// <summary>
@@ -131,6 +148,15 @@ public class SettingsController : MonoBehaviour
     public void SetResolution(Resolution resolution)
     {
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    /// <summary>
+    /// Change the language of the game.
+    /// </summary>
+    /// <param name="locale">The language.</param>
+    public void SetLanguage(Locale locale)
+    {
+        LocalizationSettings.Instance.SetSelectedLocale(locale);
     }
 
     /// <summary>

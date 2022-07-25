@@ -13,8 +13,27 @@ MonoBehaviour:
   m_Name: Card2
   m_EditorClassIdentifier: 
   <Id>k__BackingField: card2
-  <CardName>k__BackingField: card
-  <CardDescription>k__BackingField: card2
+  <CardNameKey>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:becb6eae01765084396b3cc7f3505689
+    m_TableEntryReference:
+      m_KeyId: 14157327052800
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CardDescriptionKey>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:becb6eae01765084396b3cc7f3505689
+    m_TableEntryReference:
+      m_KeyId: 14224935038976
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   <Power>k__BackingField: 02000000070000000200000006000000
   <CardSprite>k__BackingField: {fileID: 21300000, guid: 022e78427e7e80443a1a3f3ed0cb5456, type: 3}
-  <ElementType>k__BackingField: 9
+  <ElementType>k__BackingField: 0
+  references:
+    version: 2
+    RefIds: []

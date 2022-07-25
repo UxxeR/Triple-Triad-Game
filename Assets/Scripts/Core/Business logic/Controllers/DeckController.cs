@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DeckController : MonoBehaviour
 {
@@ -21,6 +19,9 @@ public class DeckController : MonoBehaviour
     public string currentDeckName;
     public List<string> CurrentEditorCardsSelected { get; set; } = new List<string>();
 
+    /// <summary>
+    /// First method that will be called when a script is enabled. Only called once.
+    /// </summary>
     private void Awake()
     {
         Instance = this;
@@ -28,6 +29,9 @@ public class DeckController : MonoBehaviour
         PopulateDeckCards();
     }
 
+    /// <summary>
+    /// Update the deck name.
+    /// </summary>
     public void UpdateDeckName()
     {
         if (OnDeckNameUpdated != null)
@@ -36,6 +40,9 @@ public class DeckController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Create a new deck.
+    /// </summary>
     public void CreateDeck()
     {
         if (currentUIDeck != null)
@@ -51,6 +58,10 @@ public class DeckController : MonoBehaviour
         DataController.Instance.SavePlayerData();
     }
 
+    /// <summary>
+    /// Modify an existing deck.
+    /// </summary>
+    /// <param name="deck">The deck that will be modified.</param>
     public void ModifyDeck(UIDeck deck)
     {
         ClearDeckEditor();
@@ -62,6 +73,10 @@ public class DeckController : MonoBehaviour
         DataController.Instance.SavePlayerData();
     }
 
+    /// <summary>
+    /// Delete an existing deck.
+    /// </summary>
+    /// <param name="deck">The deck that will be deleted.</param>
     public void DeleteDeck(UIDeck deck)
     {
         if (Player.Instance.CurrentDeck == deck.deckData)
@@ -75,27 +90,46 @@ public class DeckController : MonoBehaviour
         DataController.Instance.SavePlayerData();
     }
 
+    /// <summary>
+    /// Select a deck to be used in the next round.
+    /// </summary>
+    /// <param name="deckData">The data of the deck that will play the player.</param>
     public void UseDeck(DeckData deckData)
     {
         Player.Instance.CurrentDeck = deckData;
         DataController.Instance.SavePlayerData();
     }
 
+    /// <summary>
+    /// Check if can add a card to the deck that is creating.
+    /// </summary>
+    /// <returns>True if the deck has less than the max cards. Else false.</returns>
     public bool CanAddCardToDeck()
     {
         return SelectedEditorCardsContainer.childCount < MAX_CARDS;
     }
 
+    /// <summary>
+    /// Check if can create the deck.
+    /// </summary>
+    /// <returns>True if the player fulfill all the requirements to create a deck. Else false.</returns>
     public bool CanCreateDeck()
     {
         return !CanAddCardToDeck() && currentDeckName != string.Empty && !Player.Instance.Decks.Any(deck => deck.Id == currentDeckName);
     }
 
+    /// <summary>
+    /// Check if can add a new deck.
+    /// </summary>
+    /// <returns>True if the player has less than the max decks. Else false.</returns>
     public bool CheckIfCanAddDeck()
     {
         return deckContainer.childCount < MAX_DECKS;
     }
 
+    /// <summary>
+    /// Return the cards in the deck container to his original position.
+    /// </summary>
     public void ClearDeckEditor()
     {
         foreach (EditorCard card in SelectedEditorCardsContainer.GetComponentsInChildren<EditorCard>())
@@ -104,6 +138,9 @@ public class DeckController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Populate with all the cards that the player has obtained.
+    /// </summary>
     public void PopulateDeckCards()
     {
         Player.Instance.UnlockedIdCards.ForEach(id =>
@@ -113,6 +150,9 @@ public class DeckController : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// Populate with all the decks that the player has created.
+    /// </summary>
     public void PopulateDecks()
     {
         Player.Instance.Decks.ForEach(deck =>

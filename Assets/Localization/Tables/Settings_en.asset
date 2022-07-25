@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Settings_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: d6250a326bdbf644fb0d87595a80450b, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 53409427456
+    m_Localized: Music volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 522420695040
+    m_Localized: SFX volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363410436096
+    m_Localized: Quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 444238868480
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393525538816
+    m_Localized: Full screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 627748057088
+    m_Localized: Vsync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 642402955264
+    m_Localized: Same rule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 786712178688
+    m_Localized: Same wall rule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 819377418240
+    m_Localized: Sudden death rule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 844752957440
+    m_Localized: Random rule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 867880349696
+    m_Localized: Plus rule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 900377817088
+    m_Localized: Elemental rule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35721552539648
+    m_Localized: Rules
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35698324484096
+    m_Localized: Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35672680509440
+    m_Localized: Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35647342718976
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42426596274176
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
