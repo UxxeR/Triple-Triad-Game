@@ -9,7 +9,9 @@ public class CollectionController : MonoBehaviour
     public Action<float> OnCardInformationVisibilityUpdated;
     public Action<string, string> OnCardInformationUpdated;
 
-
+    /// <summary>
+    /// First method that will be called when a script is enabled. Only called once.
+    /// </summary>
     private void Awake()
     {
         Instance = this;

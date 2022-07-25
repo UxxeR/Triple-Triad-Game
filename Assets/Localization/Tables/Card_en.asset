@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Card_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: becb6eae01765084396b3cc7f3505689, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 11739843473408
+    m_Localized: Demon hunter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11791806705664
+    m_Localized: Turn the destructive forces of chaos against your enemies as the
+      Demon Hunter. Using quick and devastating attacks, enormous demonic allies,
+      and chaotic fel magics, show your enemies the hatred of 10,000 years!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13982734954496
+    m_Localized: "Preserve the balance by taking on the many forms of the wild and
+      unleashing nature\u2019s wrath upon your enemies. Druids are flexible combatants
+      with nearly limitless choice in how to handle their opponents. Employ buffs,
+      compel beasts, harness healing powers, or sling damaging spells against anything
+      that threatens the natural order."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12976085217280
+    m_Localized: Druid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14224935038976
+    m_Localized: According to Hunters, a ruthless offense of tooth and claw is better
+      than any defense. These lone survivalists tap into their feral nature to take
+      down their prey with hidden traps, tamed beasts, and volleys of baleful arrows.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14157327052800
+    m_Localized: Hunter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14407156576256
+    m_Localized: No other hero wields the arcane with as much skill and raw power
+      as a Mage. Using their unrivaled array of spells, Mages can wipe entire boards
+      of minions, deal devastating amounts of damage directly to their enemy, or
+      summon creatures of pure energy to do their bidding.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14393881604096
+    m_Localized: Mage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14811403595776
+    m_Localized: Fearsome holy knights, Paladins make use of emboldened minions,
+      healing spells, and Divine Shields to stand stalwart against their enemies
+      and hold out for victory.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14809763622912
+    m_Localized: Paladin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15066220146688
+    m_Localized: The Light calls, but shadows whisper. Heroes of righteousness, Priests
+      have unmatched healing potential and can bestow powerful holy enchantments
+      on their minions. However, there is no light without dark. Priests can also
+      tap into the shadows to manipulate the minds of their enemies and deal mortifying
+      psychic damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15141335937024
+    m_Localized: Using unseen blade, blinding speed, and subtle poison, Rogues can
+      dispatch their enemies before escaping without a trace. Unleash a devastating
+      chain of minions, spells, and attacks all within a single turn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15206423146496
+    m_Localized: "Masters of the primal elements, Shaman manipulate nature\u2019s
+      forces to call up healing rains, unleash torrents of lava, or conjure spiritual
+      allies to aid them in battle. A Shaman\u2019s arsenal reflects the balance
+      of the natural forces they wield: versatile and powerful minions, spells, buffs
+      and damage."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15315881897984
+    m_Localized: "Power-hungry practitioners of the fel arts, Warlocks have no qualms
+      unleashing debilitating curses, reckless demons, or violent waves of hellfire.
+      They\u2019ll sacrifice anything to take down those who stand in their way,
+      including their own vitality."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15400241934336
+    m_Localized: Seasoned fighters of unparalleled prowess, Warriors have mastery
+      over an arsenal of weaponry and armor, allowing them to be both deadly combatants
+      and formidable defenders. Taking damage only serves to enrage the Warrior and
+      his Minions, triggering powerful effects that further enhance their fearsome
+      abilities.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15397389807616
+    m_Localized: Warrior
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15314107707392
+    m_Localized: Warlock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15200970551296
+    m_Localized: Shaman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15135153532928
+    m_Localized: Rogue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15064756334592
+    m_Localized: Priest
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Card_es
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: becb6eae01765084396b3cc7f3505689, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 11739843473408
+    m_Localized: Cazador de demonios
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11791806705664
+    m_Localized: "\rConvierte las fuerzas destructivas del caos contra tus enemigos
+      como Demon Hunter. \xA1Usando ataques r\xE1pidos y devastadores, enormes aliados
+      demon\xEDacos y magias viles ca\xF3ticas, muestra a tus enemigos el odio de
+      10,000 a\xF1os!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13982734954496
+    m_Localized: "Conserva el equilibrio asumiendo las muchas formas de la naturaleza
+      salvaje y desatando la ira de la naturaleza sobre tus enemigos. Los druidas
+      son combatientes flexibles con opciones casi ilimitadas sobre c\xF3mo manejar
+      a sus oponentes. Emplea mejoras, obliga a las bestias, aprovecha los poderes
+      curativos o lanza hechizos da\xF1inos contra cualquier cosa que amenace el
+      orden natural."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12976085217280
+    m_Localized: Druida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14224935038976
+    m_Localized: "Seg\xFAn Hunters, una ofensiva despiadada de dientes y garras es
+      mejor que cualquier defensa. Estos sobrevivientes solitarios aprovechan su
+      naturaleza salvaje para acabar con su presa con trampas ocultas, bestias domesticadas
+      y r\xE1fagas de flechas funestas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14157327052800
+    m_Localized: Cazador
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14407156576256
+    m_Localized: "Ning\xFAn otro h\xE9roe maneja lo arcano con tanta habilidad y
+      poder como un mago. Usando su variedad inigualable de hechizos, los magos pueden
+      barrer tableros enteros de s\xFAbditos, infligir cantidades devastadoras de
+      da\xF1o directamente a su enemigo o invocar criaturas de energ\xEDa pura para
+      cumplir sus \xF3rdenes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14393881604096
+    m_Localized: Mago
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14809763622912
+    m_Localized: "Palad\xEDn"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14811403595776
+    m_Localized: Los temibles caballeros sagrados, los paladines, hacen uso de esbirros
+      envalentonados, hechizos curativos y escudos divinos para mantenerse firmes
+      contra sus enemigos y luchar por la victoria.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15066220146688
+    m_Localized: "La Luz llama, pero las sombras susurran. H\xE9roes de justicia,
+      los sacerdotes tienen un potencial de curaci\xF3n sin igual y pueden otorgar
+      poderosos encantamientos sagrados a sus secuaces. Sin embargo, no hay luz sin
+      oscuridad. Los sacerdotes tambi\xE9n pueden aprovechar las sombras para manipular
+      las mentes de sus enemigos y causar un da\xF1o ps\xEDquico mortificante."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15141335937024
+    m_Localized: "Utilizando una hoja invisible, una velocidad cegadora y un veneno
+      sutil, los p\xEDcaros pueden despachar a sus enemigos antes de escapar sin
+      dejar rastro. Desata una devastadora cadena de minions, hechizos y ataques,
+      todo en un solo turno."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15206423146496
+    m_Localized: "Maestros de los elementos primarios, los chamanes manipulan las
+      fuerzas de la naturaleza para invocar lluvias curativas, desatar torrentes
+      de lava o conjurar aliados espirituales para ayudarlos en la batalla. El arsenal
+      de un cham\xE1n refleja el equilibrio de las fuerzas naturales que maneja:
+      esbirros, hechizos, beneficios y da\xF1o vers\xE1tiles y poderosos."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15315881897984
+    m_Localized: "Practicantes hambrientos de poder de las artes viles, los brujos
+      no tienen escr\xFApulos en desatar maldiciones debilitantes, demonios temerarios
+      o violentas oleadas de fuego infernal. Sacrificar\xE1n cualquier cosa para
+      derribar a aquellos que se interpongan en su camino, incluida su propia vitalidad."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15400241934336
+    m_Localized: "Guerreros experimentados de destreza sin igual, los guerreros dominan
+      un arsenal de armas y armaduras, lo que les permite ser combatientes mortales
+      y defensores formidables. Recibir da\xF1o solo sirve para enfurecer al guerrero
+      y sus secuaces, desencadenando poderosos efectos que mejoran a\xFAn m\xE1s
+      sus temibles habilidades."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15397389807616
+    m_Localized: Guerrero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15314107707392
+    m_Localized: Brujo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15200970551296
+    m_Localized: "Cham\xE1n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15135153532928
+    m_Localized: "P\xEDcaro"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15064756334592
+    m_Localized: Sacerdote
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

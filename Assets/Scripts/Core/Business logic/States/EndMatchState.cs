@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class EndMatchState : BaseState
 {
@@ -24,7 +25,7 @@ public class EndMatchState : BaseState
 
         if (blueScore > gameController.GameCards.Count / 2)
         {
-            turnController.UpdateTurnWindow(GenericAttribute.GetAttribute<CustomColorAttribute>(Team.BLUE).HexadecimalToRGBColor(), $"{Team.BLUE.ToString()} WIN");
+            turnController.UpdateTurnWindow(GenericAttribute.GetAttribute<CustomColorAttribute>(Team.BLUE).HexadecimalToRGBColor(), LocalizationSettings.StringDatabase.GetLocalizedString("Game", "BlueWin"));
             string idCardUnlocked = UnlockEnemyCard();
 
             if (idCardUnlocked != string.Empty)
@@ -36,12 +37,12 @@ public class EndMatchState : BaseState
         }
         else if (blueScore < gameController.GameCards.Count / 2)
         {
-            turnController.UpdateTurnWindow(GenericAttribute.GetAttribute<CustomColorAttribute>(Team.RED).HexadecimalToRGBColor(), $"{Team.RED.ToString()} WIN");
+            turnController.UpdateTurnWindow(GenericAttribute.GetAttribute<CustomColorAttribute>(Team.RED).HexadecimalToRGBColor(), LocalizationSettings.StringDatabase.GetLocalizedString("Game", "RedWin"));
         }
         else
         {
             draw = true;
-            turnController.UpdateTurnWindow(new CustomColorAttribute("#131313").HexadecimalToRGBColor(), $"DRAW");
+            turnController.UpdateTurnWindow(new CustomColorAttribute("#131313").HexadecimalToRGBColor(), LocalizationSettings.StringDatabase.GetLocalizedString("Game", "Draw"));
         }
     }
 
@@ -92,6 +93,10 @@ public class EndMatchState : BaseState
         }
     }
 
+    /// <summary>
+    /// Unlock a random card from the database that the player have not obtained.
+    /// </summary>
+    /// <returns>The id of the card unlocked.</returns>
     public string UnlockRandomCard()
     {
 
@@ -106,6 +111,10 @@ public class EndMatchState : BaseState
         return cardId;
     }
 
+    /// <summary>
+    /// Unlock a random card from the enemy deck that the player have not obtained.
+    /// </summary>
+    /// <returns>The id of the card unlocked.</returns>
     public string UnlockEnemyCard()
     {
         string cardId = string.Empty;

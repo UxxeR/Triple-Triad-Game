@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class StartMatchState : BaseState
 {
@@ -13,7 +14,7 @@ public class StartMatchState : BaseState
         GameController.Instance.UpdateRaycastPhysics(1 << LayerMask.NameToLayer("Nothing"));
         timeToDecideTurn = 0f;
         turnDecided = false;
-        turnController.UpdateTurnWindow(new CustomColorAttribute("#131313").HexadecimalToRGBColor(), $"ROLLING THE DICE...");
+        turnController.UpdateTurnWindow(new CustomColorAttribute("#131313").HexadecimalToRGBColor(), LocalizationSettings.StringDatabase.GetLocalizedString("Game", "RollingDice"));
         turnController.UpdateTurnVisibility(1f);
         turnController.UpdateTimer();
     }
@@ -58,8 +59,19 @@ public class StartMatchState : BaseState
     /// </summary>
     public void DecideTeamTurn()
     {
+        string teamTurnTextKey;
         turnController.TeamTurn = (Team)Random.Range(0, System.Enum.GetNames(typeof(Team)).Length);
-        turnController.UpdateTurnWindow(GenericAttribute.GetAttribute<CustomColorAttribute>(turnController.TeamTurn).HexadecimalToRGBColor(), $"{turnController.TeamTurn} TURN");
+
+        if (turnController.TeamTurn == Team.BLUE)
+        {
+            teamTurnTextKey = "BlueTurn";
+        }
+        else
+        {
+            teamTurnTextKey = "RedTurn";
+        }
+
+        turnController.UpdateTurnWindow(GenericAttribute.GetAttribute<CustomColorAttribute>(turnController.TeamTurn).HexadecimalToRGBColor(), LocalizationSettings.StringDatabase.GetLocalizedString("Game", teamTurnTextKey));
         turnDecided = true;
     }
 }
