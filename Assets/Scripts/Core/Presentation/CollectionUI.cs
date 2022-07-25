@@ -7,6 +7,9 @@ public class CollectionUI : MonoBehaviour
     [field: SerializeField] public TMP_Text CardNameText { get; set; }
     [field: SerializeField] public TMP_Text CardDescriptionText { get; set; }
 
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time. Only called once.
+    /// </summary>
     public void Start()
     {
         CollectionController.Instance.OnCardInformationVisibilityUpdated += UpdateCardInformationVisibility;

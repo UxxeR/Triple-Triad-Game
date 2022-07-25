@@ -5,6 +5,7 @@ public class SettingsData : IData<SettingsData>
     public float SFXVolume { get; set; }
     public int ResolutionIndex { get; set; }
     public int QualityIndex { get; set; }
+    public int LanguageIndex { get; set; }
     public bool FullScreen { get; set; }
     public bool Vsync { get; set; }
     public bool SameRule { get; set; }
@@ -23,6 +24,7 @@ public class SettingsData : IData<SettingsData>
         SFXVolume = 100f;
         ResolutionIndex = 0;
         QualityIndex = 0;
+        LanguageIndex = 0;
         FullScreen = true;
         Vsync = true;
         SameRule = true;
@@ -40,6 +42,7 @@ public class SettingsData : IData<SettingsData>
                         float SFXVolume,
                         int ResolutionIndex,
                         int QualityIndex,
+                        int LanguageIndex,
                         bool FullScreen,
                         bool Vsync,
                         bool SameRule,
@@ -53,6 +56,7 @@ public class SettingsData : IData<SettingsData>
         this.SFXVolume = SFXVolume;
         this.ResolutionIndex = ResolutionIndex;
         this.QualityIndex = QualityIndex;
+        this.LanguageIndex = LanguageIndex;
         this.FullScreen = FullScreen;
         this.Vsync = Vsync;
         this.SameRule = SameRule;
@@ -73,6 +77,7 @@ public class SettingsData : IData<SettingsData>
         SFXVolume = SettingsController.Instance.SFXSetting.Slider.value;
         ResolutionIndex = SettingsController.Instance.ResolutionSetting.CurrentIndex;
         QualityIndex = SettingsController.Instance.QualitySetting.CurrentIndex;
+        LanguageIndex = SettingsController.Instance.LanguageSetting.CurrentIndex;
         FullScreen = SettingsController.Instance.FullScreen.isOn;
         Vsync = SettingsController.Instance.Vsync.isOn;
         SameRule = SettingsController.Instance.SameRule.isOn;
@@ -85,6 +90,7 @@ public class SettingsData : IData<SettingsData>
                                 SFXVolume,
                                 ResolutionIndex,
                                 QualityIndex,
+                                LanguageIndex,
                                 FullScreen,
                                 Vsync,
                                 SameRule,
@@ -104,6 +110,7 @@ public class SettingsData : IData<SettingsData>
         SettingsController.Instance.SFXSetting.Slider.value = SFXVolume;
         SettingsController.Instance.ResolutionSetting.CurrentIndex = ResolutionIndex;
         SettingsController.Instance.QualitySetting.CurrentIndex = QualityIndex;
+        SettingsController.Instance.LanguageSetting.CurrentIndex = LanguageIndex;
         SettingsController.Instance.FullScreen.isOn = FullScreen;
         SettingsController.Instance.Vsync.isOn = Vsync;
         SettingsController.Instance.SameRule.isOn = SameRule;

@@ -22,6 +22,10 @@ public class PlayerData : IData<PlayerData>
         this.CurrentDeck = CurrentDeck;
     }
 
+    /// <summary>
+    /// Get the player data.
+    /// </summary>
+    /// <returns>The player data.</returns>
     public PlayerData GetData()
     {
         this.UnlockedIdCards = Player.Instance.UnlockedIdCards;
@@ -29,6 +33,9 @@ public class PlayerData : IData<PlayerData>
         return new PlayerData(this.UnlockedIdCards, this.Decks, this.CurrentDeck);
     }
 
+    /// <summary>
+    /// Set the player data.
+    /// </summary>
     public void SetData()
     {
         Player.Instance.UnlockedIdCards = this.UnlockedIdCards;

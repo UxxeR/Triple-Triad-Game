@@ -23,7 +23,7 @@ public class CollectionCard : MonoBehaviour
         elementSprite.sprite = Resources.Load<Sprite>($"Sprites/Elements/{CardData.ElementType}");
         button.onClick.AddListener(() =>
         {
-            CollectionController.Instance.UpdateCardInformation(CardData.CardName, CardData.CardDescription);
+            CollectionController.Instance.UpdateCardInformation(CardData.CardNameKey.GetLocalizedString(), CardData.CardDescriptionKey.GetLocalizedString());
             CollectionController.Instance.UpdateCardInformationVisibility(1f);
         }
         );
