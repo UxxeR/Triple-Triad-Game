@@ -7,7 +7,10 @@ By default all rules are enabled.
 <img src="https://user-images.githubusercontent.com/25460362/180471161-76036169-9057-4cfd-b1de-e0b2f85f5819.png" width="800" height="450" alt="Menu image"/>
 
 ### Settings
-<img src="https://user-images.githubusercontent.com/25460362/180471270-382e7afb-f4e0-47f0-9f2e-80c3b2f97390.png" width="800" height="450" alt="Settings image"/>
+<img src="https://user-images.githubusercontent.com/25460362/180787551-98316e5b-6a60-450a-93b6-eef56ceb7eda.png" width="800" height="450" alt="Settings image"/>
+<img src="https://user-images.githubusercontent.com/25460362/180787604-df93341d-60c0-4f71-a071-774337978d14.png" width="800" height="450" alt="Settings image"/>
+<img src="https://user-images.githubusercontent.com/25460362/180787653-830dd2df-8ca7-4661-9d6a-98b167e4c757.png" width="800" height="450" alt="Settings image"/>
+<img src="https://user-images.githubusercontent.com/25460362/180787708-c4203279-01ad-453b-859b-41564b8888f9.png" width="800" height="450" alt="Settings image"/>
 
 ### Collection
 <img src="https://user-images.githubusercontent.com/25460362/180471386-e53749a3-b9b4-4a9a-99db-69f1c5e18026.png" width="800" height="450" alt="Collection image"/>
@@ -53,6 +56,10 @@ Of the cards captured by the Same, Same Wall or Plus rule, if they are adjacent 
 ## Art 🎨
 Every piece of art in this project was self-made using Aseprite.
 
+# Game localization
+Uses the Unity localization package v1.0.5.
+The game is available to play in both English and Spanish.
+
 ## Features ✔️
 - [x] Capture cards.
 - [x] Easy card creation.
@@ -71,3 +78,4 @@ Every piece of art in this project was self-made using Aseprite.
 - [x] Settings (including rule settings).
 - [x] Deck building.
 - [x] Unlocking cards.
+- [x] Game localization.
