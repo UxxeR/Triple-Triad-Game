@@ -1,5 +1,5 @@
 # 🎴 Triple Triad 🎴
-Triple Triad minigame from Final Fantasy VIII made in Unity 2022.1. 
+Triple Triad minigame from Final Fantasy VIII made in Unity 2021.3.8f1. 
 By default all rules are enabled.
 
 ## User interface 👀
@@ -57,7 +57,7 @@ Of the cards captured by the Same, Same Wall or Plus rule, if they are adjacent 
 Every piece of art in this project was self-made using Aseprite.
 
 ## Game localization
-Uses the Unity localization package v1.0.5.
+Uses the Unity localization package v1.3.2.
 The game is available to play in both English and Spanish.
 
 ## Features ✔️
