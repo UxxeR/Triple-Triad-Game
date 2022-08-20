@@ -23,28 +23,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-es
     - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c8c9b56cf48dc7419b9195bf595a650
     m_Address: Settings_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es
     - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ac5d840726142e2409f00ebedc9297ac
     m_Address: Game_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es
     - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 46eee7b7ea3a0c747af8a86ab11ef734
     m_Address: Card_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es
     - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: afd7cc5d330e1b248bdf23588356cda5, type: 2}
   m_SchemaSet:
